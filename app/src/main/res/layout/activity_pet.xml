@@ -32,7 +32,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/imageView"
+            android:id="@+id/petImg"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="50dp"
             android:src="@drawable/pet"
@@ -42,7 +42,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/imageView2"
+            android:id="@+id/eqmImg1"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="50dp"
             android:src="@drawable/pet"
@@ -52,7 +52,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/imageView3"
+            android:id="@+id/eqmImg2"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="50dp"
             android:src="@drawable/pet"
@@ -62,7 +62,17 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/imageView4"
+            android:id="@+id/eqmImg3"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:src="@drawable/pet"
+            android:layout_centerInParent="true"
+            android:contentDescription="Third Equipment" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/eqmImg4"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="50dp"
             android:src="@drawable/pet"
@@ -86,28 +96,28 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/imageButton"
+                    android:id="@+id/equipment1"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/button_bg"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:src="@drawable/add"
                     android:scaleType="centerCrop"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp" />
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="35dp" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/equipment2"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/button_bg"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:src="@drawable/add"
                     android:scaleType="centerCrop"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp" />
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="35dp" />
 
             </LinearLayout>
 
@@ -121,28 +131,28 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/equipment3"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/button_bg"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:src="@drawable/add"
                     android:scaleType="centerCrop"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp" />
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="35dp" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/imageButton4"
+                    android:id="@+id/equipment4"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/button_bg"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ribbon"
                     android:scaleType="centerCrop"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp" />
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="35dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -151,20 +161,19 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView"
         android:layout_weight="1">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non ligula ut eros vehicula pellentesque vitae eget ex. Suspendisse eget ante et orci consequat ornare porttitor vitae mi. Aliquam id tempor diam, ac porta ipsum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent id ipsum blandit, venenatis metus quis, consectetur lacus. Ut fringilla metus justo, vitae convallis turpis tempus id. Pellentesque vel neque efficitur, ultrices mauris sit amet, suscipit libero. Nunc ultricies non tellus quis volutpat. Integer sed ornare nunc, eu euismod massa. Nam fermentum odio vel augue rhoncus, eu maximus lorem ultricies. Integer ut magna ut augue finibus egestas. Proin ligula lorem, rutrum ac libero ac, tempus tristique leo. Aenean hendrerit ex a fringilla elementum. Nulla luctus, orci nec feugiat suscipit, felis massa bibendum libero, ut varius arcu justo quis urna. Vestibulum id dignissim elit, vitae tincidunt nunc. Nam nec molestie magna amet."
-                android:id="@+id/textView"
+                android:id="@+id/petInfo"
                 android:textSize="25sp"
                 android:background="@drawable/border"
                 android:padding="10dp" />
