@@ -13,7 +13,7 @@ public class SplashArt extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_art);
 
-        Intent i = new Intent(this, Bag.class);
+        Intent i = new Intent(this, FeedingActivity.class);
         startActivity(i);
     }
 

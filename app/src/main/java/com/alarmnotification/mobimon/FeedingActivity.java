@@ -15,7 +15,7 @@ import android.content.DialogInterface;
 /**
  * Created by Thai Son on 04/06/2016.
  */
-public class Bag extends AppCompatActivity {
+public class FeedingActivity extends AppCompatActivity {
     private ImageAdapter mAdapter;
     private ArrayList<String> listItem;
     private ArrayList<Integer> listFlag;
@@ -25,7 +25,7 @@ public class Bag extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_splash_art);
-        setContentView(R.layout.bag);
+        setContentView(R.layout.feed);
         prepareList();
 
         // prepared arraylist and passed it to the Adapter class
@@ -40,7 +40,7 @@ public class Bag extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
-                Builder builder = new AlertDialog.Builder(Bag.this);
+                Builder builder = new AlertDialog.Builder(FeedingActivity.this);
                 AlertDialog dialog = builder.create();
                 dialog.setTitle(mAdapter.getItem(position));
                 dialog.setIcon((int) mAdapter.getItemId(position));
@@ -56,7 +56,7 @@ public class Bag extends AppCompatActivity {
 
         public void onClick(DialogInterface dialog, int which) {
             //Toast.makeText(SplashArt.this, "Great! Welcome.", Toast.LENGTH_SHORT).show();
-            Toast.makeText(Bag.this, "Đã bán!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(FeedingActivity.this, "Đã bán!", Toast.LENGTH_SHORT).show();
         }
     };
 

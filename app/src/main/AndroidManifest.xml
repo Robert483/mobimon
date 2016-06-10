@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Bag"
+            android:name=".FeedingActivity"
             android:label="Bag" >
         </activity>
     </application>
