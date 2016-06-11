@@ -1,8 +1,5 @@
 package com.alarmnotification.mobimon;
 
-import android.app.Dialog;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,29 +7,29 @@ import android.widget.ImageButton;
 
 public class Pet extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageButton[] equipments;
+    private ImageButton[] parts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet);
 
-        int[] eqmsId = new int[] { R.id.equipment1, R.id.equipment2, R.id.equipment3, R.id.equipment4 };
+        int[] partIds = new int[] { R.id.headSelect, R.id.wingSelect, R.id.bodySelect, R.id.footSelect };
 
-        equipments = new ImageButton[eqmsId.length];
-        for (int i = 0, len = eqmsId.length; i < len; ++i) {
-            this.equipments[i] = (ImageButton)this.findViewById(eqmsId[i]);
-            this.equipments[i].setOnClickListener(this);
+        parts = new ImageButton[partIds.length];
+        for (int i = 0, len = partIds.length; i < len; ++i) {
+            this.parts[i] = (ImageButton)this.findViewById(partIds[i]);
+            this.parts[i].setOnClickListener(this);
         }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.equipment1:
-            case R.id.equipment2:
-            case R.id.equipment3:
-            case R.id.equipment4:
+            case R.id.headSelect:
+            case R.id.wingSelect:
+            case R.id.bodySelect:
+            case R.id.footSelect:
                 openSelectEqmDialog();
                 break;
         }

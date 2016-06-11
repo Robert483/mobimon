@@ -9,18 +9,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SplashArt">
-        </activity>
-        <activity android:name=".Pet" android:label="@string/pet_act">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Bag"
-            android:label="Bag" >
-        </activity>
+        <activity android:name=".Pet"></activity>
+        <activity android:name=".Feeding"></activity>
+        <activity android:name=".Home"></activity>
     </application>
 
 </manifest>
