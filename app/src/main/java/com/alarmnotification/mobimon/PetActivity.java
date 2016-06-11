@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class Pet extends AppCompatActivity implements View.OnClickListener {
+public class PetActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton[] parts;
 

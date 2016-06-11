@@ -15,12 +15,13 @@ import android.content.DialogInterface;
 /**
  * Created by Thai Son on 04/06/2016.
  */
-public class Feeding extends AppCompatActivity {
+public class FeedingActivity extends AppCompatActivity implements OnItemClickListener {
     private ImageAdapter mAdapter;
     private ArrayList<String> listItem;
     private ArrayList<Integer> listFlag;
 
-    private GridView gridView;
+    private GridView foodGrid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,45 +30,28 @@ public class Feeding extends AppCompatActivity {
         prepareList();
 
         // prepared arraylist and passed it to the Adapter class
-        mAdapter = new ImageAdapter(this,listItem, listFlag);
+        mAdapter = new ImageAdapter(this, listItem, listFlag);
 
         // Set custom adapter to gridview
-        gridView = (GridView) findViewById(R.id.foodGrid);
-        gridView.setAdapter(mAdapter);
+        foodGrid = (GridView) findViewById(R.id.foodGrid);
+        foodGrid.setAdapter(mAdapter);
 
         // Implement On Item click listener
-        gridView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long arg3) {
-                Builder builder = new AlertDialog.Builder(Feeding.this);
-                AlertDialog dialog = builder.create();
-                dialog.setTitle(mAdapter.getItem(position));
-                dialog.setIcon((int) mAdapter.getItemId(position));
-                dialog.setMessage("Thông tin chi tiết về Item");
-                dialog.setButton("Bán", listenerAccept);
-                dialog.setButton2("Quay lại", listenerDoesNotAccept);
-                dialog.setCancelable(false);
-                dialog.show();
-            }
-        });
+        foodGrid.setOnItemClickListener(this);
     }
-
     DialogInterface.OnClickListener listenerAccept = new DialogInterface.OnClickListener() {
 
         public void onClick(DialogInterface dialog, int which) {
-            //Toast.makeText(SplashArt.this, "Great! Welcome.", Toast.LENGTH_SHORT).show();
-            Toast.makeText(Feeding.this, "Đã bán!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(FeedingActivity.this, "Fed!", Toast.LENGTH_SHORT).show();
         }
     };
 
     DialogInterface.OnClickListener listenerDoesNotAccept = new DialogInterface.OnClickListener() {
 
         public void onClick(DialogInterface dialog, int which) {
-            //Toast.makeText(SplashArt.this, "Đã bán!", Toast.LENGTH_SHORT).show();
+
         }
     };
-
     public void prepareList()
     {
         listItem = new ArrayList<String>();
@@ -112,5 +96,17 @@ public class Feeding extends AppCompatActivity {
         listFlag.add(R.drawable.turkey);
         listFlag.add(R.drawable.united_kingdom);
         listFlag.add(R.drawable.united_states);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Builder builder = new AlertDialog.Builder(FeedingActivity.this);
+        AlertDialog dialog = builder.create();
+        dialog.setTitle(mAdapter.getItem(position));
+        dialog.setIcon((int) mAdapter.getItemId(position));
+        dialog.setMessage("Item information");
+        dialog.setButton("Feed", listenerAccept);
+        dialog.setButton2("Cancel", listenerDoesNotAccept);
+        dialog.show();
     }
 }

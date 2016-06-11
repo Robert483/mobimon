@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 
-public class SplashArt extends AppCompatActivity {
+public class SplashArtActivity extends AppCompatActivity {
 
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -27,6 +27,7 @@ public class SplashArt extends AppCompatActivity {
         setContentView(R.layout.activity_splash_art);
         StartAnimations();
     }
+
     private void StartAnimations() {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
         anim.reset();
@@ -43,9 +44,9 @@ public class SplashArt extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                Intent mainIntent = new Intent(SplashArt.this.getApplicationContext(), Home.class);
-                SplashArt.this.startActivity(mainIntent);
-                SplashArt.this.finish();
+                Intent mainIntent = new Intent(SplashArtActivity.this.getApplicationContext(), HomeActivity.class);
+                SplashArtActivity.this.startActivity(mainIntent);
+                SplashArtActivity.this.finish();
             }
         }, 3500);
     }

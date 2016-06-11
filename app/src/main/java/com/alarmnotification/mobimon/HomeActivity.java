@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class Home extends AppCompatActivity implements View.OnClickListener {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton[] navs;
 
@@ -28,12 +28,12 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.petNav:
-                this.goToActivity(Pet.class);
+                this.goToActivity(PetActivity.class);
                 break;
             case R.id.bagNav:
                 break;
             case R.id.feedingNav:
-                this.goToActivity(Feeding.class);
+                this.goToActivity(FeedingActivity.class);
                 break;
             case R.id.fightNav:
                 break;

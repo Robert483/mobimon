@@ -14,33 +14,33 @@ import android.widget.TextView;
  */
 public class ImageAdapter extends BaseAdapter
 {
-    private ArrayList<String> listCountry;
-    private ArrayList<Integer> listFlag;
+    private ArrayList<String> listNames;
+    private ArrayList<Integer> listImage;
     private Activity activity;
 
-    public ImageAdapter(Activity activity,ArrayList<String> listCountry, ArrayList<Integer> listFlag) {
+    public ImageAdapter(Activity activity, ArrayList<String> listNames, ArrayList<Integer> listImage) {
         super();
-        this.listCountry = listCountry;
-        this.listFlag = listFlag;
+        this.listNames = listNames;
+        this.listImage = listImage;
         this.activity = activity;
     }
 
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return listCountry.size();
+        return listNames.size();
     }
 
     @Override
     public String getItem(int position) {
         // TODO Auto-generated method stub
-        return listCountry.get(position);
+        return listNames.get(position);
     }
 
     @Override
     public long getItemId(int position) {
         // TODO Auto-generated method stub
-        return listFlag.get(position);
+        return listImage.get(position);
     }
 
     public static class ViewHolder
@@ -70,8 +70,8 @@ public class ImageAdapter extends BaseAdapter
             view = (ViewHolder) convertView.getTag();
         }
 
-        view.txtViewTitle.setText(listCountry.get(position));
-        view.imgViewFlag.setImageResource(listFlag.get(position));
+        view.txtViewTitle.setText(listNames.get(position));
+        view.imgViewFlag.setImageResource(listImage.get(position));
 
         return convertView;
     }

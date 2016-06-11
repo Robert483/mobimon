@@ -9,6 +9,7 @@ public abstract class Item {
 
     private int    price;
     private String name;
+    private String description;
     private Bitmap image;
 
     public String getName() {
@@ -33,5 +34,13 @@ public abstract class Item {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
