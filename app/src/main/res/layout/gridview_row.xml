@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/relativeLayout1"
-    android:layout_width="fill_parent"
+<RelativeLayout android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/border"
@@ -9,19 +7,20 @@
 
     <ImageView
         android:layout_height="64dp"
-        android:id="@+id/imageView1"
+        android:id="@+id/imageView_TS"
         android:layout_width="64dp"
 
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY">
     </ImageView>
 
     <TextView
         android:text="TextView"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1"
+        android:id="@+id/textView_TS"
         android:layout_width="wrap_content"
-        android:layout_below="@+id/imageView1"
+        android:layout_below="@+id/imageView_TS"
         android:layout_marginTop="2dp"
         android:layout_centerHorizontal="true"
         android:textSize="18sp"

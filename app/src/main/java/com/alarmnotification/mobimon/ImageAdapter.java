@@ -60,8 +60,8 @@ public class ImageAdapter extends BaseAdapter
             view = new ViewHolder();
             convertView = inflator.inflate(R.layout.gridview_row, null);
 
-            view.txtViewTitle = (TextView) convertView.findViewById(R.id.textView1);
-            view.imgViewFlag = (ImageView) convertView.findViewById(R.id.imageView1);
+            view.txtViewTitle = (TextView) convertView.findViewById(R.id.textView_TS);
+            view.imgViewFlag = (ImageView) convertView.findViewById(R.id.imageView_TS);
 
             convertView.setTag(view);
         }

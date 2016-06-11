@@ -45,15 +45,13 @@
                 android:id="@+id/petNav"
                 android:src="@drawable/mypet_btn"
                 android:background="@android:color/transparent"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
                 android:maxHeight="100dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:contentDescription="Pet Navigation" />
 
             <ImageButton
                 android:layout_width="match_parent"
@@ -61,22 +59,18 @@
                 android:id="@+id/bagNav"
                 android:src="@drawable/bag_btn"
                 android:background="@android:color/transparent"
-                android:layout_alignTop="@+id/bagNav"
-                android:layout_toEndOf="@+id/bagNav"
-                android:layout_toRightOf="@+id/bagNav"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
                 android:maxHeight="100dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:contentDescription="Bag &#38; Store Navigation" />
 
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/feedingNav"
-                android:layout_alignBottom="@+id/petNav"
-                android:layout_centerHorizontal="true"
                 android:src="@drawable/feeding_btn"
                 android:background="@android:color/transparent"
                 android:layout_weight="1"
@@ -84,7 +78,8 @@
                 android:scaleType="centerInside"
                 android:maxHeight="100dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:contentDescription="Feeding Navigation" />
 
             <ImageButton
                 android:layout_width="match_parent"
@@ -92,23 +87,18 @@
                 android:id="@+id/fightNav"
                 android:src="@drawable/fighting_btn"
                 android:background="@android:color/transparent"
-                android:layout_alignTop="@+id/fightNav"
-                android:layout_toEndOf="@+id/fightNav"
-                android:layout_toRightOf="@+id/fightNav"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
                 android:maxHeight="100dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:contentDescription="Fight Navigation" />
 
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/facebookNav"
-                android:layout_alignBottom="@+id/fightNav"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:src="@drawable/fb_btn"
                 android:background="@android:color/transparent"
                 android:layout_weight="1"
@@ -116,44 +106,57 @@
                 android:scaleType="centerInside"
                 android:maxHeight="100dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:contentDescription="Facebook Navigation" />
         </LinearLayout>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/wing_home"
             android:src="@drawable/wing1"
             android:layout_above="@+id/hpBar_home"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/activity_vertical_margin" />
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:contentDescription="Wing"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="@dimen/pet_homeAct_top_margin" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/foot_home"
             android:src="@drawable/foot1"
             android:layout_above="@+id/hpBar_home"
             android:layout_alignLeft="@+id/wing_home"
-            android:layout_marginBottom="@dimen/activity_vertical_margin" />
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:contentDescription="Foot"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="@dimen/pet_homeAct_top_margin" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/body_home"
             android:src="@drawable/body1"
             android:layout_above="@+id/hpBar_home"
             android:layout_alignLeft="@+id/wing_home"
-            android:layout_marginBottom="@dimen/activity_vertical_margin" />
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:contentDescription="Body"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="@dimen/pet_homeAct_top_margin" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/head_home"
             android:src="@drawable/head1"
             android:layout_above="@+id/hpBar_home"
             android:layout_alignLeft="@+id/wing_home"
-            android:layout_marginBottom="@dimen/activity_vertical_margin" />
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:contentDescription="Head"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="@dimen/pet_homeAct_top_margin" />
 
     </RelativeLayout>
 

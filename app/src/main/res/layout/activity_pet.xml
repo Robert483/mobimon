@@ -16,41 +16,45 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/wing_pet"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginTop="@dimen/pet_petAct_vertical_margin"
+            android:layout_marginBottom="@dimen/pet_petAct_vertical_margin"
             android:src="@drawable/wing1"
             android:layout_centerInParent="true"
-            android:contentDescription="First Equipment" />
+            android:contentDescription="Wing"
+            android:scaleType="fitCenter" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/foot_pet"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginTop="@dimen/pet_petAct_vertical_margin"
+            android:layout_marginBottom="@dimen/pet_petAct_vertical_margin"
             android:src="@drawable/foot1"
             android:layout_centerInParent="true"
-            android:contentDescription="Second Equipment" />
+            android:contentDescription="Foot"
+            android:scaleType="fitCenter" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/body_pet"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginTop="@dimen/pet_petAct_vertical_margin"
+            android:layout_marginBottom="@dimen/pet_petAct_vertical_margin"
             android:src="@drawable/body1"
             android:layout_centerInParent="true"
-            android:contentDescription="Third Equipment" />
+            android:contentDescription="Body"
+            android:scaleType="fitCenter" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/head_pet"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginTop="@dimen/pet_petAct_vertical_margin"
+            android:layout_marginBottom="@dimen/pet_petAct_vertical_margin"
             android:src="@drawable/head1"
             android:layout_centerInParent="true"
-            android:contentDescription="Third Equipment" />
+            android:contentDescription="Head"
+            android:scaleType="fitCenter" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -63,8 +67,8 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="60dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/distance_petAct">
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -73,11 +77,12 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginBottom="35dp"
+                    android:scaleType="fitCenter"
+                    android:layout_marginTop="@dimen/button_petAct_vertical_margin"
+                    android:layout_marginBottom="@dimen/button_petAct_vertical_margin"
                     android:background="@drawable/button_bg"
-                    android:src="@drawable/head1" />
+                    android:src="@drawable/head1"
+                    android:contentDescription="Change Head" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -86,11 +91,12 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginBottom="35dp"
+                    android:scaleType="fitCenter"
+                    android:layout_marginTop="@dimen/button_petAct_vertical_margin"
+                    android:layout_marginBottom="@dimen/button_petAct_vertical_margin"
                     android:background="@drawable/button_bg"
-                    android:src="@drawable/body1" />
+                    android:src="@drawable/body1"
+                    android:contentDescription="Change Body" />
 
             </LinearLayout>
 
@@ -99,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginLeft="60dp">
+                android:layout_marginLeft="@dimen/distance_petAct">
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -108,11 +114,12 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginBottom="35dp"
+                    android:layout_marginTop="@dimen/button_petAct_vertical_margin"
+                    android:layout_marginBottom="@dimen/button_petAct_vertical_margin"
                     android:background="@drawable/button_bg"
-                    android:src="@drawable/wing1" />
+                    android:src="@drawable/wing1"
+                    android:contentDescription="Change Wing"
+                    android:scaleType="fitCenter" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -122,10 +129,11 @@
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:src="@drawable/foot1"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginBottom="35dp"
+                    android:layout_marginTop="@dimen/button_petAct_vertical_margin"
+                    android:layout_marginBottom="@dimen/button_petAct_vertical_margin"
                     android:background="@drawable/button_bg"
-                    android:scaleType="centerCrop" />
+                    android:contentDescription="Change Foot"
+                    android:scaleType="fitCenter" />
             </LinearLayout>
         </LinearLayout>
 

@@ -1,12 +1,15 @@
 package com.alarmnotification.mobimon;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by Ryan L. Vu on 6/11/2016.
  */
 public class Equipment extends Item {
 
-    private int atk;
-    private int def;
+    private int    atk;
+    private int    def;
+    private Bitmap largeImage;
 
     public int getAtk() {
         return atk;
@@ -22,5 +25,13 @@ public class Equipment extends Item {
 
     public void setDef(int def) {
         this.def = def;
+    }
+
+    public Bitmap getLargeImage() {
+        return largeImage;
+    }
+
+    public void setLargeImage(Bitmap largeImage) {
+        this.largeImage = largeImage;
     }
 }
