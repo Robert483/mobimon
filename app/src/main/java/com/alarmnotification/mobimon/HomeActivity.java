@@ -31,6 +31,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 this.goToActivity(PetActivity.class);
                 break;
             case R.id.bagNav:
+                goToActivity(BagActivity.class);
                 break;
             case R.id.feedingNav:
                 this.goToActivity(FeedingActivity.class);

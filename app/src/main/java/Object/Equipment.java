@@ -1,4 +1,4 @@
-package com.alarmnotification.mobimon;
+package Object;
 
 import android.graphics.Bitmap;
 

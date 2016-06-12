@@ -1,4 +1,4 @@
-package com.alarmnotification.mobimon;
+package Object;
 
 /**
  * Created by Ryan L. Vu on 6/11/2016.

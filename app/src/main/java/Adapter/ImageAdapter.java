@@ -1,4 +1,4 @@
-package com.alarmnotification.mobimon;
+package Adapter;
 
 import java.util.ArrayList;
 import android.app.Activity;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.alarmnotification.mobimon.R;
 
 /**
  * Created by Thai Son on 04/06/2016.

@@ -12,6 +12,8 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 
+import Adapter.ImageAdapter;
+
 /**
  * Created by Thai Son on 04/06/2016.
  */

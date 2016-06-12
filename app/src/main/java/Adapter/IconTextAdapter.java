@@ -1,4 +1,4 @@
-package com.alarmnotification.mobimon;
+package Adapter;
 
 import android.app.Activity;
 import android.content.Context;
