@@ -3,26 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.alarmnotification.mobimon.Pet"
-    android:orientation="vertical">
-
-    <!--android.support.percent.PercentRelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <ImageView
-            app:layout_widthPercent="50%"
-            app:layout_aspectRatio="90%"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
-
-    </android.support.percent.PercentRelativeLayout-->
+    tools:context=".PetActivity"
+    android:orientation="vertical"
+    android:background="@drawable/bg">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -32,52 +15,46 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/petImg"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
-            android:src="@drawable/pet"
+            android:id="@+id/wing_pet"
+            android:layout_marginTop="@dimen/pet_petAct_vertical_margin"
+            android:layout_marginBottom="@dimen/pet_petAct_vertical_margin"
+            android:src="@drawable/wing1"
             android:layout_centerInParent="true"
-            android:contentDescription="Pet" />
+            android:contentDescription="Wing"
+            android:scaleType="fitCenter" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/eqmImg1"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
-            android:src="@drawable/pet"
+            android:id="@+id/foot_pet"
+            android:layout_marginTop="@dimen/pet_petAct_vertical_margin"
+            android:layout_marginBottom="@dimen/pet_petAct_vertical_margin"
+            android:src="@drawable/foot1"
             android:layout_centerInParent="true"
-            android:contentDescription="First Equipment" />
+            android:contentDescription="Foot"
+            android:scaleType="fitCenter" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/eqmImg2"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
-            android:src="@drawable/pet"
+            android:id="@+id/body_pet"
+            android:layout_marginTop="@dimen/pet_petAct_vertical_margin"
+            android:layout_marginBottom="@dimen/pet_petAct_vertical_margin"
+            android:src="@drawable/body1"
             android:layout_centerInParent="true"
-            android:contentDescription="Second Equipment" />
+            android:contentDescription="Body"
+            android:scaleType="fitCenter" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/eqmImg3"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
-            android:src="@drawable/pet"
+            android:id="@+id/head_pet"
+            android:layout_marginTop="@dimen/pet_petAct_vertical_margin"
+            android:layout_marginBottom="@dimen/pet_petAct_vertical_margin"
+            android:src="@drawable/head1"
             android:layout_centerInParent="true"
-            android:contentDescription="Third Equipment" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/eqmImg4"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
-            android:src="@drawable/pet"
-            android:layout_centerInParent="true"
-            android:contentDescription="Third Equipment" />
+            android:contentDescription="Head"
+            android:scaleType="fitCenter" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -90,34 +67,36 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="60dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/distance_petAct">
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/equipment1"
+                    android:id="@+id/headSelect"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/button_bg"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/add"
-                    android:scaleType="centerCrop"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginBottom="35dp" />
+                    android:scaleType="fitCenter"
+                    android:layout_marginTop="@dimen/button_petAct_vertical_margin"
+                    android:layout_marginBottom="@dimen/button_petAct_vertical_margin"
+                    android:background="@drawable/button_bg"
+                    android:src="@drawable/head1"
+                    android:contentDescription="Change Head" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/equipment2"
+                    android:id="@+id/bodySelect"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/button_bg"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/add"
-                    android:scaleType="centerCrop"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginBottom="35dp" />
+                    android:scaleType="fitCenter"
+                    android:layout_marginTop="@dimen/button_petAct_vertical_margin"
+                    android:layout_marginBottom="@dimen/button_petAct_vertical_margin"
+                    android:background="@drawable/button_bg"
+                    android:src="@drawable/body1"
+                    android:contentDescription="Change Body" />
 
             </LinearLayout>
 
@@ -126,33 +105,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginLeft="60dp">
+                android:layout_marginLeft="@dimen/distance_petAct">
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/equipment3"
+                    android:id="@+id/wingSelect"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/button_bg"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/add"
-                    android:scaleType="centerCrop"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginBottom="35dp" />
+                    android:layout_marginTop="@dimen/button_petAct_vertical_margin"
+                    android:layout_marginBottom="@dimen/button_petAct_vertical_margin"
+                    android:background="@drawable/button_bg"
+                    android:src="@drawable/wing1"
+                    android:contentDescription="Change Wing"
+                    android:scaleType="fitCenter" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/equipment4"
+                    android:id="@+id/footSelect"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/button_bg"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ribbon"
-                    android:scaleType="centerCrop"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginBottom="35dp" />
+                    android:src="@drawable/foot1"
+                    android:layout_marginTop="@dimen/button_petAct_vertical_margin"
+                    android:layout_marginBottom="@dimen/button_petAct_vertical_margin"
+                    android:background="@drawable/button_bg"
+                    android:contentDescription="Change Foot"
+                    android:scaleType="fitCenter" />
             </LinearLayout>
         </LinearLayout>
 
@@ -175,7 +156,7 @@
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non ligula ut eros vehicula pellentesque vitae eget ex. Suspendisse eget ante et orci consequat ornare porttitor vitae mi. Aliquam id tempor diam, ac porta ipsum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent id ipsum blandit, venenatis metus quis, consectetur lacus. Ut fringilla metus justo, vitae convallis turpis tempus id. Pellentesque vel neque efficitur, ultrices mauris sit amet, suscipit libero. Nunc ultricies non tellus quis volutpat. Integer sed ornare nunc, eu euismod massa. Nam fermentum odio vel augue rhoncus, eu maximus lorem ultricies. Integer ut magna ut augue finibus egestas. Proin ligula lorem, rutrum ac libero ac, tempus tristique leo. Aenean hendrerit ex a fringilla elementum. Nulla luctus, orci nec feugiat suscipit, felis massa bibendum libero, ut varius arcu justo quis urna. Vestibulum id dignissim elit, vitae tincidunt nunc. Nam nec molestie magna amet."
                 android:id="@+id/petInfo"
                 android:textSize="25sp"
-                android:background="@drawable/border"
+                android:background="#b0ffffff"
                 android:padding="10dp" />
         </LinearLayout>
     </ScrollView>
