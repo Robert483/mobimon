@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 public abstract class Item {
 
     private int    price;
+    private int    sellPrice;
     private String name;
     private String description;
     private Bitmap image;
@@ -42,5 +43,13 @@ public abstract class Item {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getSellPrice() {
+        return sellPrice;
+    }
+
+    public void setSellPrice(int sellPrice) {
+        this.sellPrice = sellPrice;
     }
 }
