@@ -1,0 +1,206 @@
+{
+  "Store" : {
+		"Body" : [
+			{
+			  "name" : "Áo Vàng",
+			  "image" : "",
+			  "buyPrice" : 100,
+			  "sellPrice" : 50,
+			  "description" : "Áo màu vàng",
+			  "atk" : 0,
+			  "def" : 10,
+			  "largeImg" : "brazil.png"
+			},
+			{
+			  "name" : "Áo Bạc",
+			  "image" : "",
+			  "buyPrice" : 80,
+			  "sellPrice" : 40,
+			  "description" : "Áo màu bạc",
+			  "atk" : 0,
+			  "def" : 8,
+			  "largeImg" : "canada.png"
+			},
+			{
+			  "name" : "Áo Đồng",
+			  "image" : "",
+			  "buyPrice" : 60,
+			  "sellPrice" : 30,
+			  "description" : "Áo màu đồng",
+			  "atk" : 0,
+			  "def" : 6,
+			  "largeImg" : "china.png"
+			},
+			{
+			  "name" : "Áo Kim Cương",
+			  "image" : "",
+			  "buyPrice" : 120,
+			  "sellPrice" : 60,
+			  "description" : "Áo màu kim cương",
+			  "atk" : 0,
+			  "def" : 12,
+			  "largeImg" : "france.png"
+			}
+		],
+		"Head" : [
+			{
+			  "name" : "Nón Vàng",
+			  "image" : "",
+			  "buyPrice" : 100,
+			  "sellPrice" : 50,
+			  "description" : "Nón màu vàng",
+			  "atk" : 0,
+			  "def" : 5,
+			  "largeImg" : "germany.png"
+			},
+			{
+			  "name" : "Nón Bạc",
+			  "image" : "",
+			  "buyPrice" : 80,
+			  "sellPrice" : 40,
+			  "description" : "Nón màu bạc",
+			  "atk" : 0,
+			  "def" : 4,
+			  "largeImg" : "india.png"
+			},
+			{
+			  "name" : "Nón Đồng",
+			  "image" : "",
+			  "buyPrice" : 60,
+			  "sellPrice" : 30,
+			  "description" : "Nón màu đồng",
+			  "atk" : 0,
+			  "def" : 3,
+			  "largeImg" : "iran.png"
+			},
+			{
+			  "name" : "Nón Kim Cương",
+			  "image" : "",
+			  "buyPrice" : 120,
+			  "sellPrice" : 60,
+			  "description" : "Nón màu kim cương",
+			  "atk" : 0,
+			  "def" : 6,
+			  "largeImg" : "italy.png"
+			}
+		],
+		"Wing" : [
+			{
+			  "name" : "Cánh Vàng",
+			  "image" : "",
+			  "buyPrice" : 100,
+			  "sellPrice" : 50,
+			  "description" : "Cánh màu vàng",
+			  "atk" : 5,
+			  "def" : 5,
+			  "largeImg" : "japan.png"
+			},
+			{
+			  "name" : "Cánh Bạc",
+			  "image" : "",
+			  "buyPrice" : 80,
+			  "sellPrice" : 40,
+			  "description" : "Cánh màu bạc",
+			  "atk" : 4,
+			  "def" : 4,
+			  "largeImg" : "korea.png"
+			},
+			{
+			  "name" : "Cánh Đồng",
+			  "image" : "",
+			  "buyPrice" : 60,
+			  "sellPrice" : 30,
+			  "description" : "Cánh màu đồng",
+			  "atk" : 3,
+			  "def" : 3,
+			  "largeImg" : "mexico.png"
+			},
+			{
+			  "name" : "Cánh Kim Cương",
+			  "image" : "",
+			  "buyPrice" : 120,
+			  "sellPrice" : 60,
+			  "description" : "Cánh màu kim cương",
+			  "atk" : 6,
+			  "def" : 6,
+			  "largeImg" : "netherlands.png"
+			}
+		],
+		"Foot" : [
+			{
+			  "name" : "Giày Vàng",
+			  "image" : "",
+			  "buyPrice" : 100,
+			  "sellPrice" : 50,
+			  "description" : "Giày màu vàng",
+			  "atk" : 10,
+			  "def" : 0,
+			  "largeImg" : "portugal.png"
+			},
+			{
+			  "name" : "Giày Bạc",
+			  "image" : "",
+			  "buyPrice" : 80,
+			  "sellPrice" : 40,
+			  "description" : "Giày màu bạc",
+			  "atk" : 8,
+			  "def" : 0,
+			  "largeImg" : "russia.png"
+			},
+			{
+			  "name" : "Giày Đồng",
+			  "image" : "",
+			  "buyPrice" : 60,
+			  "sellPrice" : 30,
+			  "description" : "Giày màu đồng",
+			  "atk" : 6,
+			  "def" : 0,
+			  "largeImg" : "spain.png"
+			},
+			{
+			  "name" : "Giày Kim Cương",
+			  "image" : "",
+			  "buyPrice" : 120,
+			  "sellPrice" : 60,
+			  "description" : "Giày màu kim cương",
+			  "atk" : 12,
+			  "def" : 0,
+			  "largeImg" : "turkey.png"
+			}
+		],
+		"Food" : [
+			{
+			  "name" : "Cá",
+			  "image" : "http://orig08.deviantart.net/124f/f/2011/298/6/5/pez___fish_png_by_ivettecaro-d4dxuvf.png",
+			  "buyPrice" : 10,
+			  "sellPrice" : 5,
+			  "description" : "Thực phẩm tăng sức khỏe",
+			  "hp" : 10
+			},
+			{
+			  "name" : "Gà",
+			  "image" : "http://vignette2.wikia.nocookie.net/farmville/images/e/e5/White_Australorp_Chicken-icon.png",
+			  "buyPrice" : 8,
+			  "sellPrice" : 4,
+			  "description" : "Thực phẩm tăng sức khỏe",
+			  "hp" : 8
+			},
+			{
+			  "name" : "Kem",
+			  "image" : "http://www.fancyicons.com/free-icons/101/real-vista-food/png/256/strawberry_ice_cream_256.png",
+			  "buyPrice" : 4,
+			  "sellPrice" : 2,
+			  "description" : "Thực phẩm tăng sức khỏe",
+			  "hp" : 2
+			},
+			{
+			  "name" : "Bánh Quy",
+			  "image" : "https://cdn0.iconfinder.com/data/icons/ie_yummy/128/cake_20.png",
+			  "buyPrice" : 6,
+			  "sellPrice" : 3,
+			  "description" : "Thực phẩm tăng sức khỏe",
+			  "hp" : 6
+			}
+		]
+	}
+}

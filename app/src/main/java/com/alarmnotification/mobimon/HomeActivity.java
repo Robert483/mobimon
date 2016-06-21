@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,6 +25,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             this.navs[i] = (ImageButton)this.findViewById(navIds[i]);
             this.navs[i].setOnClickListener(this);
         }
+
+        Log.d("Son", "InstanceID token: " + FirebaseInstanceId.getInstance().getToken());
     }
 
     @Override

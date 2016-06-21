@@ -7,11 +7,13 @@ import android.graphics.Bitmap;
  */
 public abstract class Item {
 
-    private int    price;
+    private int    buyPrice;
     private int    sellPrice;
     private String name;
     private String description;
     private Bitmap image;
+    private String Linkimage;
+
 
     public String getName() {
         return name;
@@ -29,14 +31,6 @@ public abstract class Item {
         this.image = image;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -51,5 +45,25 @@ public abstract class Item {
 
     public void setSellPrice(int sellPrice) {
         this.sellPrice = sellPrice;
+    }
+
+    public int getBuyPrice() {
+        return buyPrice;
+    }
+
+    public void setBuyPrice(int buyPrice) {
+        this.buyPrice = buyPrice;
+    }
+
+    public String getLinkimage() {
+        return Linkimage;
+    }
+
+    public void setLinkimage(String linkimage) {
+        Linkimage = linkimage;
+    }
+
+    public String getDetail() {
+        return null;
     }
 }
