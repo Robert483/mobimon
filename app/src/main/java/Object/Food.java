@@ -18,7 +18,7 @@ public class Food extends Item {
         this.setBuyPrice(Integer.parseInt(snapshot.child("buyPrice").getValue().toString()));
         this.setSellPrice(Integer.parseInt(snapshot.child("sellPrice").getValue().toString()));
         this.hp = Integer.parseInt(snapshot.child("hp").getValue().toString());
-
+        this.setStatus("server");
     }
 
     public Food() {

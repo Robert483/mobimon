@@ -8,8 +8,9 @@
     <ImageView
         android:id="@+id/imgIcon"
         android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="fitXY"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:src="@drawable/bag_item" />

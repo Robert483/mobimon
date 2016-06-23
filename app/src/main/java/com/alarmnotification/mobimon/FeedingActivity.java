@@ -1,46 +1,80 @@
 package com.alarmnotification.mobimon;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 
+import Adapter.BagGridViewAdapter;
 import Adapter.ImageAdapter;
+import Object.*;
 
 /**
  * Created by Thai Son on 04/06/2016.
  */
 public class FeedingActivity extends AppCompatActivity implements OnItemClickListener {
-    private ImageAdapter mAdapter;
-    private ArrayList<String> listItem;
-    private ArrayList<Integer> listFlag;
+    private BagGridViewAdapter adapter;
+    ArrayList<Item> arrData;
+    GridView gridView;
+    Item currItemSelected;
+    DBHelper dbHelper;
 
-    private GridView foodGrid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_splash_art);
         setContentView(R.layout.activity_feeding);
-        prepareList();
 
-        // prepared arraylist and passed it to the Adapter class
-        mAdapter = new ImageAdapter(this, listItem, listFlag);
+        initData();
 
-        // Set custom adapter to gridview
-        foodGrid = (GridView) findViewById(R.id.foodGrid);
-        foodGrid.setAdapter(mAdapter);
+        initLayout();
 
-        // Implement On Item click listener
-        foodGrid.setOnItemClickListener(this);
+
     }
+
+    private void initLayout() {
+        //Returning the layout file after inflating
+        //Change R.layout.tab1 in you classes
+        gridView=(GridView) findViewById(R.id.gridView);
+
+        adapter = new BagGridViewAdapter(this, arrData);
+        gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener(this);
+
+
+    }
+
+    private void initData() {
+        arrData = new ArrayList<Item>();
+        if(dbHelper==null) {
+            dbHelper = new DBHelper(this);
+            try {
+                dbHelper.createDataBase();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        arrData.addAll(dbHelper.getAllOwnedFood());
+    }
+
+
+
+
     DialogInterface.OnClickListener listenerAccept = new DialogInterface.OnClickListener() {
 
         public void onClick(DialogInterface dialog, int which) {
@@ -54,58 +88,15 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
 
         }
     };
-    public void prepareList()
-    {
-        listItem = new ArrayList<String>();
-
-        listItem.add("india");
-        listItem.add("Brazil");
-        listItem.add("Canada");
-        listItem.add("China");
-        listItem.add("France");
-        listItem.add("Germany");
-        listItem.add("Iran");
-        listItem.add("Italy");
-        listItem.add("Japan");
-        listItem.add("Korea");
-        listItem.add("Mexico");
-        listItem.add("Netherlands");
-        listItem.add("Portugal");
-        listItem.add("Russia");
-        listItem.add("Saudi Arabia");
-        listItem.add("Spain");
-        listItem.add("Turkey");
-        listItem.add("United Kingdom");
-        listItem.add("United States");
-
-        listFlag = new ArrayList<Integer>();
-        listFlag.add(R.drawable.india);
-        listFlag.add(R.drawable.brazil);
-        listFlag.add(R.drawable.canada);
-        listFlag.add(R.drawable.china);
-        listFlag.add(R.drawable.france);
-        listFlag.add(R.drawable.germany);
-        listFlag.add(R.drawable.iran);
-        listFlag.add(R.drawable.italy);
-        listFlag.add(R.drawable.japan);
-        listFlag.add(R.drawable.korea);
-        listFlag.add(R.drawable.mexico);
-        listFlag.add(R.drawable.netherlands);
-        listFlag.add(R.drawable.portugal);
-        listFlag.add(R.drawable.russia);
-        listFlag.add(R.drawable.saudi_arabia);
-        listFlag.add(R.drawable.spain);
-        listFlag.add(R.drawable.turkey);
-        listFlag.add(R.drawable.united_kingdom);
-        listFlag.add(R.drawable.united_states);
-    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        currItemSelected = arrData.get(position);
         Builder builder = new AlertDialog.Builder(FeedingActivity.this);
         AlertDialog dialog = builder.create();
-        dialog.setTitle(mAdapter.getItem(position));
-        dialog.setIcon((int) mAdapter.getItemId(position));
+        dialog.setTitle(currItemSelected.getName());
+        Drawable d = new BitmapDrawable(getResources(), currItemSelected.getBitmapImage(this));
+        dialog.setIcon(d);
         dialog.setMessage("Item information");
         dialog.setButton("Feed", listenerAccept);
         dialog.setButton2("Cancel", listenerDoesNotAccept);

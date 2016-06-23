@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.alarmnotification.mobimon.R;
@@ -24,7 +25,10 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import Document.Config;
+import Document.Utility;
 import Object.*;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Adapter.BagGridViewAdapter;
@@ -47,6 +51,9 @@ public class StoreTabFragment  extends Fragment
 
     ImageLoader imageLoader;
     Item currItemSelected;
+    DBHelper dbHelper;
+
+
 
     public static StoreTabFragment newInstance() {
         //Bundle args = new Bundle();
@@ -102,7 +109,16 @@ public class StoreTabFragment  extends Fragment
     }
 
     private void initData() {
+
+        dbHelper = new DBHelper(getContext());
+        try {
+            dbHelper.createDataBase();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         arrData = new ArrayList<Item>();
+        arrData.addAll(dbHelper.getAllStoreEquipment());
 
         Firebase.setAndroidContext(getContext());
         final Firebase ref = new Firebase(Config.FIREBASE_URL);
@@ -175,9 +191,14 @@ public class StoreTabFragment  extends Fragment
                 imageLoader.loadImage(currItemSelected.getLinkimage(), new SimpleImageLoadingListener() {
                     @Override
                     public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                        currItemSelected.setImage(loadedImage);
-                        arrData.add(0,currItemSelected);
-                        adapter.notifyDataSetChanged();
+                        String imgName = currItemSelected.getName()+".png";
+                        Utility.saveImage(getContext(), loadedImage, imgName);
+                        currItemSelected.setImage(imgName);
+
+                        dbHelper.saveItemToBag(currItemSelected);
+                        deTailItem.setVisibility(View.GONE);
+                        deTailItem.startAnimation(animFadeout);
+                        Toast.makeText(getContext(), "Mua thành công", Toast.LENGTH_LONG).show();
 
                     }
                 });

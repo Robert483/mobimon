@@ -29,10 +29,11 @@
     </LinearLayout>
 
     <GridView
-        android:layout_height="wrap_content"
-        android:id="@+id/foodGrid"
         android:layout_width="match_parent"
-        android:numColumns="auto_fit"
+        android:layout_height="match_parent"
+        android:id="@+id/gridView"
+        android:numColumns="3"
+        android:gravity="center"
         android:horizontalSpacing="10dp"
         android:verticalSpacing="10dp">
     </GridView>

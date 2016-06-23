@@ -1,6 +1,7 @@
 package Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import com.alarmnotification.mobimon.R;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import java.util.ArrayList;
+
+import Document.Utility;
 import Object.*;
 
 /**
@@ -78,13 +81,7 @@ public class BagGridViewAdapter extends BaseAdapter{
         Item item = arrData.get(position);
         holder.tv.setText(item.getName());
 
-        if(item.getImage() != null){
-            holder.img.setImageBitmap(item.getImage());
-            //Log.d("Son", "123312123");
-        }
-        else {
-            UrlImageViewHelper.setUrlDrawable(holder.img, arrData.get(position).getLinkimage(), R.mipmap.ic_launcher);
-        }
+        item.addImageToImageView(holder.img,context);
 
 
         return rowView;

@@ -9,9 +9,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import Adapter.PageAdapter;
+import Fragment.BagTabFragment;
 
 public class BagActivity extends AppCompatActivity
-        implements TabLayout.OnTabSelectedListener{
+        implements TabLayout.OnTabSelectedListener
+        {
 
 
     private TabLayout tabLayout;
@@ -91,7 +93,10 @@ public class BagActivity extends AppCompatActivity
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());
-
+        if(viewPager.getCurrentItem() == 0) {
+            BagTabFragment frag1 = (BagTabFragment) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
+            frag1.updateGridView();
+        }
     }
 
     @Override

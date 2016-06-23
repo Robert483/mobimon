@@ -9,7 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import Adapter.IconTextAdapter;
+
+import Object.*;
 
 /**
  * Created by Ryan L. Vu on 6/4/2016.
@@ -32,10 +37,9 @@ public class ItemSelectDialog extends DialogFragment implements DialogInterface.
         return dialog;
     }
 
-    public static ItemSelectDialog newInstance(String[] info, int[] imageRes) {
+    public static ItemSelectDialog newInstance(String type) {
         Bundle args = new Bundle();
-        args.putStringArray("info", info);
-        args.putIntArray("imageRes", imageRes);
+        args.putString("type", type);
 
         ItemSelectDialog dialog = new ItemSelectDialog();
         dialog.setArguments(args);
@@ -46,14 +50,25 @@ public class ItemSelectDialog extends DialogFragment implements DialogInterface.
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Bundle args = this.getArguments();
+        String type = args.getString("type");
 
         AlertDialog.Builder builder  = new AlertDialog.Builder(this.getActivity());
         LayoutInflater      inflater = getActivity().getLayoutInflater();
         View                view     = inflater.inflate(args.getInt("lvR", R.layout.listview_holder), null);
 
+        ArrayList<Equipment> arrData = new ArrayList<>();
+
+        DBHelper dbHelper = new DBHelper(getContext());
+        try {
+            dbHelper.createDataBase();
+            arrData = dbHelper.getAllOwnedEquipment(type);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         ListView listView = (ListView)view.findViewById(args.getInt("lvRId", R.id.listViewHolder));
         listView.setSelector(android.R.color.darker_gray);
-        listView.setAdapter(new IconTextAdapter(getContext(), args.getInt("rR", R.layout.icon_text_row), args.getInt("tvRId", R.id.textViewRow), args.getInt("imgRId", R.id.imageViewRow), args.getStringArray("info"), args.getIntArray("imageRes")));
+        listView.setAdapter(new IconTextAdapter(getContext(), args.getInt("rR", R.layout.icon_text_row), args.getInt("tvRId", R.id.textViewRow), args.getInt("imgRId", R.id.imageViewRow), arrData));
 
         builder.setView(view);
         builder.setTitle("Select equipment:");
@@ -70,6 +85,7 @@ public class ItemSelectDialog extends DialogFragment implements DialogInterface.
                 break;
             case DialogInterface.BUTTON_NEGATIVE:
                 break;
+
         }
     }
 }
