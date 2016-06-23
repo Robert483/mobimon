@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="pet_homeAct_top_margin">75dp</dimen>
+    <dimen name="button_homeAct_maxHeight">50dp</dimen>
+    <dimen name="hpBar_homeAct_height">20dp</dimen>
+    <dimen name="pet_petAct_vertical_margin">10dp</dimen>
+    <dimen name="button_petAct_vertical_margin">10dp</dimen>
+</resources>

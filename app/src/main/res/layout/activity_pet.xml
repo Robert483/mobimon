@@ -13,48 +13,52 @@
         android:layout_weight="1">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/wing_pet"
             android:layout_marginTop="@dimen/pet_petAct_vertical_margin"
             android:layout_marginBottom="@dimen/pet_petAct_vertical_margin"
-            android:src="@drawable/wing1"
             android:layout_centerInParent="true"
             android:contentDescription="Wing"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="@dimen/pet_petAct_horizontal_margin"
+            android:layout_marginRight="@dimen/pet_petAct_horizontal_margin" />
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/foot_pet"
             android:layout_marginTop="@dimen/pet_petAct_vertical_margin"
             android:layout_marginBottom="@dimen/pet_petAct_vertical_margin"
-            android:src="@drawable/foot1"
             android:layout_centerInParent="true"
             android:contentDescription="Foot"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="@dimen/pet_petAct_horizontal_margin"
+            android:layout_marginRight="@dimen/pet_petAct_horizontal_margin" />
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/body_pet"
             android:layout_marginTop="@dimen/pet_petAct_vertical_margin"
             android:layout_marginBottom="@dimen/pet_petAct_vertical_margin"
-            android:src="@drawable/body1"
             android:layout_centerInParent="true"
             android:contentDescription="Body"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="@dimen/pet_petAct_horizontal_margin"
+            android:layout_marginRight="@dimen/pet_petAct_horizontal_margin" />
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/head_pet"
             android:layout_marginTop="@dimen/pet_petAct_vertical_margin"
             android:layout_marginBottom="@dimen/pet_petAct_vertical_margin"
-            android:src="@drawable/head1"
             android:layout_centerInParent="true"
             android:contentDescription="Head"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="@dimen/pet_petAct_horizontal_margin"
+            android:layout_marginRight="@dimen/pet_petAct_horizontal_margin" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -81,7 +85,6 @@
                     android:layout_marginTop="@dimen/button_petAct_vertical_margin"
                     android:layout_marginBottom="@dimen/button_petAct_vertical_margin"
                     android:background="@drawable/button_bg"
-                    android:src="@drawable/head1"
                     android:contentDescription="Change Head" />
 
                 <ImageButton
@@ -95,7 +98,6 @@
                     android:layout_marginTop="@dimen/button_petAct_vertical_margin"
                     android:layout_marginBottom="@dimen/button_petAct_vertical_margin"
                     android:background="@drawable/button_bg"
-                    android:src="@drawable/body1"
                     android:contentDescription="Change Body" />
 
             </LinearLayout>
@@ -117,7 +119,6 @@
                     android:layout_marginTop="@dimen/button_petAct_vertical_margin"
                     android:layout_marginBottom="@dimen/button_petAct_vertical_margin"
                     android:background="@drawable/button_bg"
-                    android:src="@drawable/wing1"
                     android:contentDescription="Change Wing"
                     android:scaleType="fitCenter" />
 
@@ -128,7 +129,6 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/foot1"
                     android:layout_marginTop="@dimen/button_petAct_vertical_margin"
                     android:layout_marginBottom="@dimen/button_petAct_vertical_margin"
                     android:background="@drawable/button_bg"
@@ -151,12 +151,11 @@
             android:padding="20dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non ligula ut eros vehicula pellentesque vitae eget ex. Suspendisse eget ante et orci consequat ornare porttitor vitae mi. Aliquam id tempor diam, ac porta ipsum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent id ipsum blandit, venenatis metus quis, consectetur lacus. Ut fringilla metus justo, vitae convallis turpis tempus id. Pellentesque vel neque efficitur, ultrices mauris sit amet, suscipit libero. Nunc ultricies non tellus quis volutpat. Integer sed ornare nunc, eu euismod massa. Nam fermentum odio vel augue rhoncus, eu maximus lorem ultricies. Integer ut magna ut augue finibus egestas. Proin ligula lorem, rutrum ac libero ac, tempus tristique leo. Aenean hendrerit ex a fringilla elementum. Nulla luctus, orci nec feugiat suscipit, felis massa bibendum libero, ut varius arcu justo quis urna. Vestibulum id dignissim elit, vitae tincidunt nunc. Nam nec molestie magna amet."
                 android:id="@+id/petInfo"
                 android:textSize="25sp"
-                android:background="#b0ffffff"
+                android:background="@drawable/border_shape"
                 android:padding="10dp" />
         </LinearLayout>
     </ScrollView>

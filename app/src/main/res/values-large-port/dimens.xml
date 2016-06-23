@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="pet_homeAct_top_margin">300dp</dimen>
+    <dimen name="pet_petAct_vertical_margin">30dp</dimen>
+    <dimen name="button_petAct_vertical_margin">50dp</dimen>
+    <dimen name="distance_petAct">50dp</dimen>
+    <dimen name="pet_petAct_horizontal_margin">200dp</dimen>
+</resources>

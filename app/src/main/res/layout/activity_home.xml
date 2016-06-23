@@ -17,16 +17,16 @@
             android:id="@+id/hpBar_home"
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/hpBar_homeAct_height"
             android:layout_gravity="center"
-            android:progress="0"
             android:layout_above="@+id/linearLayout"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
-            android:indeterminate="false" />
+            android:indeterminate="false"
+            android:max="100" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -48,7 +48,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
-                android:maxHeight="100dp"
+                android:maxHeight="@dimen/button_homeAct_maxHeight"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:contentDescription="Pet Navigation" />
@@ -62,7 +62,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
-                android:maxHeight="100dp"
+                android:maxHeight="@dimen/button_homeAct_maxHeight"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:contentDescription="Bag &#38; Store Navigation" />
@@ -76,7 +76,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
-                android:maxHeight="100dp"
+                android:maxHeight="@dimen/button_homeAct_maxHeight"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:contentDescription="Feeding Navigation" />
@@ -90,7 +90,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
-                android:maxHeight="100dp"
+                android:maxHeight="@dimen/button_homeAct_maxHeight"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:contentDescription="Fight Navigation" />
@@ -104,7 +104,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
-                android:maxHeight="100dp"
+                android:maxHeight="@dimen/button_homeAct_maxHeight"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:contentDescription="Facebook Navigation" />
@@ -114,7 +114,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/wing_home"
-            android:src="@drawable/wing1"
             android:layout_above="@+id/hpBar_home"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -126,7 +125,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/foot_home"
-            android:src="@drawable/foot1"
             android:layout_above="@+id/hpBar_home"
             android:layout_alignLeft="@+id/wing_home"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -138,7 +136,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/body_home"
-            android:src="@drawable/body1"
             android:layout_above="@+id/hpBar_home"
             android:layout_alignLeft="@+id/wing_home"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -150,13 +147,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/head_home"
-            android:src="@drawable/head1"
             android:layout_above="@+id/hpBar_home"
             android:layout_alignLeft="@+id/wing_home"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:contentDescription="Head"
             android:scaleType="fitCenter"
             android:layout_marginTop="@dimen/pet_homeAct_top_margin" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pet_homeAct_top_margin"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/text_logo" />
 
     </RelativeLayout>
 

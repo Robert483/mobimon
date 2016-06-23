@@ -2,6 +2,7 @@ package com.alarmnotification.mobimon;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import Object.GlobalContants;
 
 
 public class SplashArtActivity extends AppCompatActivity {
@@ -44,6 +46,16 @@ public class SplashArtActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
+                SharedPreferences data = getSharedPreferences(GlobalContants.USER_PREF, MODE_PRIVATE);
+                if (!data.contains(GlobalContants.START_TIME)) {
+                    long cur = System.currentTimeMillis();
+                    data.edit()
+                            .putLong(GlobalContants.LAST_ACTIVE, cur)
+                            .putLong(GlobalContants.START_TIME, cur)
+                            .putInt(GlobalContants.CUR_HP, 100)
+                            .commit();
+                }
+
                 Intent mainIntent = new Intent(SplashArtActivity.this.getApplicationContext(), HomeActivity.class);
                 SplashArtActivity.this.startActivity(mainIntent);
                 SplashArtActivity.this.finish();
