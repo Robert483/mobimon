@@ -7,6 +7,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.io.IOException;
@@ -19,7 +20,13 @@ import Object.*;
 /**
  * Created by Ryan L. Vu on 6/4/2016.
  */
-public class ItemSelectDialog extends DialogFragment implements DialogInterface.OnClickListener {
+public class ItemSelectDialog extends DialogFragment
+        implements DialogInterface.OnClickListener
+        ,ListView.OnItemClickListener{
+
+    Equipment currItem;
+    IconTextAdapter adapter;
+    ArrayList<Equipment> arrData;
 
     public static ItemSelectDialog newInstance(int listViewResource, int listViewResourceId, int rowResource, int textViewResourceId, int imageViewResourceId, String[] info, int[] imageRes) {
         Bundle args = new Bundle();
@@ -56,7 +63,7 @@ public class ItemSelectDialog extends DialogFragment implements DialogInterface.
         LayoutInflater      inflater = getActivity().getLayoutInflater();
         View                view     = inflater.inflate(args.getInt("lvR", R.layout.listview_holder), null);
 
-        ArrayList<Equipment> arrData = new ArrayList<>();
+        arrData = new ArrayList<>();
 
         DBHelper dbHelper = new DBHelper(getContext());
         try {
@@ -68,7 +75,8 @@ public class ItemSelectDialog extends DialogFragment implements DialogInterface.
 
         ListView listView = (ListView)view.findViewById(args.getInt("lvRId", R.id.listViewHolder));
         listView.setSelector(android.R.color.darker_gray);
-        listView.setAdapter(new IconTextAdapter(getContext(), args.getInt("rR", R.layout.icon_text_row), args.getInt("tvRId", R.id.textViewRow), args.getInt("imgRId", R.id.imageViewRow), arrData));
+        adapter = new IconTextAdapter(getContext(), args.getInt("rR", R.layout.icon_text_row), args.getInt("tvRId", R.id.textViewRow), args.getInt("imgRId", R.id.imageViewRow), arrData);
+        listView.setAdapter(adapter);
 
         builder.setView(view);
         builder.setTitle("Select equipment:");
@@ -87,5 +95,11 @@ public class ItemSelectDialog extends DialogFragment implements DialogInterface.
                 break;
 
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        currItem = arrData.get(position);
+
     }
 }

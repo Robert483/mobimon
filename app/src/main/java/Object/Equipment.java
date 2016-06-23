@@ -21,7 +21,7 @@ public class Equipment extends Item {
     private String LinklargeImage;
     private String type;
 
-    public Equipment(DataSnapshot snapshot) {
+    public Equipment(DataSnapshot snapshot, String type) {
         this.setName(snapshot.child("name").getValue().toString());
         this.setDescription(snapshot.child("description").getValue().toString());
         this.setLinkimage(snapshot.child("image").getValue().toString());
@@ -32,7 +32,7 @@ public class Equipment extends Item {
         this.atk = Integer.parseInt(snapshot.child("atk").getValue().toString());
         this.def = Integer.parseInt(snapshot.child("def").getValue().toString());
         this.setLinklargeImage(snapshot.child("largeImg").getValue().toString());
-        this.setType(snapshot.getKey());
+        this.setType(type);
         this.setStatus("server");
     }
 
@@ -81,8 +81,16 @@ public class Equipment extends Item {
     }
 
     public void addLargeImageToImageView(ImageView imageView, Context context){
+
         if(getLargeImage() != null && getLargeImage().equals("")==false){
-            Bitmap bitmap = Utility.getImageBitmap(context, getLargeImage());
+            Bitmap bitmap = null;
+            if(getStatus().equals("server")){
+                bitmap = Utility.getImageBitmap(context, getLargeImage());
+            }
+            else {
+                bitmap = Utility.getBitmapFromAssets(getLargeImage(), context);
+            }
+
             imageView.setImageBitmap(bitmap);
         }
         else {

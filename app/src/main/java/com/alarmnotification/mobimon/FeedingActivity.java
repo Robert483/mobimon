@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -30,9 +31,9 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
     private BagGridViewAdapter adapter;
     ArrayList<Item> arrData;
     GridView gridView;
-    Item currItemSelected;
+    Food currItemSelected;
     DBHelper dbHelper;
-
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,6 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
         initData();
 
         initLayout();
-
 
     }
 
@@ -56,6 +56,8 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(this);
 
+        progressBar = (ProgressBar) findViewById(R.id.hpBar_feeding);
+        progressBar.setProgress(100);
 
     }
 
@@ -79,6 +81,12 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
 
         public void onClick(DialogInterface dialog, int which) {
             Toast.makeText(FeedingActivity.this, "Fed!", Toast.LENGTH_SHORT).show();
+            int currProgress =  progressBar.getProgress() + currItemSelected.getHp();
+            if(currProgress<0)
+                currProgress = 0;
+            else  if (currProgress>100)
+                currProgress = 100;
+            progressBar.setProgress(currProgress);
         }
     };
 
@@ -91,7 +99,7 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        currItemSelected = arrData.get(position);
+        currItemSelected = (Food) arrData.get(position);
         Builder builder = new AlertDialog.Builder(FeedingActivity.this);
         AlertDialog dialog = builder.create();
         dialog.setTitle(currItemSelected.getName());

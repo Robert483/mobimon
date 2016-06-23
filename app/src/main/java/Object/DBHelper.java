@@ -144,6 +144,7 @@ public class DBHelper extends SQLiteOpenHelper{
         String largeImage = res.getString(res.getColumnIndex("largeImage"));
         String status = res.getString(res.getColumnIndex("status"));
         int id = res.getInt(res.getColumnIndex("id"));
+        String type = res.getString(res.getColumnIndex("type"));
 
         equipment.setName(name);
         equipment.setDescription(description);
@@ -155,6 +156,7 @@ public class DBHelper extends SQLiteOpenHelper{
         equipment.setLargeImage(largeImage);
         equipment.setStatus(status);
         equipment.setId(id);
+        equipment.setType(type);
 
         return equipment;
     }
@@ -219,6 +221,9 @@ public class DBHelper extends SQLiteOpenHelper{
         contentValues.put("atk", eq.getAtk());
         contentValues.put("def", eq.getDef());
         contentValues.put("largeImage", eq.getLargeImage());
+        contentValues.put("status", eq.getStatus());
+
+
 
         db.update("Currenset", contentValues, "type = ? ", new String[]{type});
 
@@ -402,8 +407,10 @@ public class DBHelper extends SQLiteOpenHelper{
             contentValues.put("largeImage", eq.getLargeImage());
             contentValues.put("form", "bag");
             contentValues.put("status", eq.getStatus());
+            contentValues.put("type", eq.getType());
 
-            db.insert("Equipment", null, contentValues);
+            long a = db.insert("Equipment", null, contentValues);
+            a = a++;
         }
 
 

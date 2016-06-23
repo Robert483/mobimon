@@ -134,25 +134,25 @@ public class StoreTabFragment  extends Fragment
                 }
                 currSnapshot =  snapshot.child("Body");
                 for (DataSnapshot postSnapshot : currSnapshot.getChildren()) {
-                    Equipment item = new Equipment(postSnapshot);
+                    Equipment item = new Equipment(postSnapshot,"body");
                     //Getting the data from snapshot
                     arrData.add(item);
                 }
                 currSnapshot =  snapshot.child("Wing");
                 for (DataSnapshot postSnapshot : currSnapshot.getChildren()) {
-                    Equipment item = new Equipment(postSnapshot);
+                    Equipment item = new Equipment(postSnapshot,"wing");
                     //Getting the data from snapshot
                     arrData.add(item);
                 }
                 currSnapshot =  snapshot.child("Foot");
                 for (DataSnapshot postSnapshot : currSnapshot.getChildren()) {
-                    Equipment item = new Equipment(postSnapshot);
+                    Equipment item = new Equipment(postSnapshot,"foot");
                     //Getting the data from snapshot
                     arrData.add(item);
                 }
                 currSnapshot =  snapshot.child("Head");
                 for (DataSnapshot postSnapshot : currSnapshot.getChildren()) {
-                    Equipment item = new Equipment(postSnapshot);
+                    Equipment item = new Equipment(postSnapshot,"head");
                     //Getting the data from snapshot
                     arrData.add(item);
                 }
@@ -191,15 +191,39 @@ public class StoreTabFragment  extends Fragment
                 imageLoader.loadImage(currItemSelected.getLinkimage(), new SimpleImageLoadingListener() {
                     @Override
                     public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                        String imgName = currItemSelected.getName()+".png";
-                        Utility.saveImage(getContext(), loadedImage, imgName);
-                        currItemSelected.setImage(imgName);
 
-                        dbHelper.saveItemToBag(currItemSelected);
-                        deTailItem.setVisibility(View.GONE);
-                        deTailItem.startAnimation(animFadeout);
-                        Toast.makeText(getContext(), "Mua thành công", Toast.LENGTH_LONG).show();
-
+                        if (currItemSelected.getStatus().equals("server")) {
+                            String imgName = currItemSelected.getName()+".png";
+                            Utility.saveImage(getContext(), loadedImage, imgName);
+                            currItemSelected.setImage(imgName);
+                            if(currItemSelected.getClass() == Equipment.class) {
+                                Equipment eq = (Equipment) currItemSelected;
+                                imageLoader.loadImage(eq.getLinklargeImage(), new SimpleImageLoadingListener() {
+                                    @Override
+                                    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                                        String largeImgName = currItemSelected.getName() + "_large.png";
+                                        Utility.saveImage(getContext(), loadedImage, largeImgName);
+                                        ((Equipment) currItemSelected).setLargeImage(largeImgName);
+                                        dbHelper.saveItemToBag(currItemSelected);
+                                        deTailItem.setVisibility(View.GONE);
+                                        deTailItem.startAnimation(animFadeout);
+                                        Toast.makeText(getContext(), "Mua thành công", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                            else{
+                                dbHelper.saveItemToBag(currItemSelected);
+                                deTailItem.setVisibility(View.GONE);
+                                deTailItem.startAnimation(animFadeout);
+                                Toast.makeText(getContext(), "Mua thành công", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        else {
+                            dbHelper.saveItemToBag(currItemSelected);
+                            deTailItem.setVisibility(View.GONE);
+                            deTailItem.startAnimation(animFadeout);
+                            Toast.makeText(getContext(), "Mua thành công", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
 
