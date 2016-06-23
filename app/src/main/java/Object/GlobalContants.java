@@ -30,4 +30,8 @@ public class GlobalContants {
 
     // Activity Request code
     public static final int SPLASH_ART_REQ_CODE = 0;
+
+    // Set alarm state
+    public static final boolean SET_ALARM_ENABLED = true;
+    public static final boolean SET_ALARM_DISABLED = false;
 }

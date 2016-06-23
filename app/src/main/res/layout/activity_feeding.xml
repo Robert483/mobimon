@@ -23,8 +23,8 @@
             android:layout_height="match_parent"
             android:id="@+id/hpBar_feeding"
             android:layout_marginLeft="10dp"
-            android:progress="40"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:max="100" />
 
     </LinearLayout>
 

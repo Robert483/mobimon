@@ -13,10 +13,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import Adapter.IconTextAdapter;
 import Object.Equipment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PetActivity extends AppCompatActivity implements View.OnClickListener, DialogInterface.OnClickListener, AdapterView.OnItemClickListener {
@@ -33,12 +35,14 @@ public class PetActivity extends AppCompatActivity implements View.OnClickListen
     private ListView listV_selectingParts;
     private int selectedPartId;
     private Equipment selectedPart;
+    private ArrayList<Equipment> selectingParts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet);
 
+        this.selectingParts = null;
         this.selectedPartId = PetActivity.NO_EQM;
         this.selectedPart = null;
         this.petInfo = (TextView)this.findViewById(R.id.petInfo);
@@ -136,82 +140,96 @@ public class PetActivity extends AppCompatActivity implements View.OnClickListen
         listV_selectingParts.setSelector(android.R.color.darker_gray);
 
         // ...
-        Equipment[] petPartEqms = new Equipment[4];
-        Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.head1);
-        petPartEqms[0] = new Equipment();
-        petPartEqms[0].setLargeImage(temp);
-        petPartEqms[0].setImage(temp);
-        petPartEqms[0].setAtk(1);
-        petPartEqms[0].setDef(1);
-        petPartEqms[0].setName("Head");
-        temp = BitmapFactory.decodeResource(getResources(), R.drawable.body1);
-        petPartEqms[1] = new Equipment();
-        petPartEqms[1].setLargeImage(temp);
-        petPartEqms[1].setImage(temp);
-        petPartEqms[1].setAtk(2);
-        petPartEqms[1].setDef(2);
-        petPartEqms[1].setName("Body");
-        temp = BitmapFactory.decodeResource(getResources(), R.drawable.foot1);
-        petPartEqms[2] = new Equipment();
-        petPartEqms[2].setLargeImage(temp);
-        petPartEqms[2].setImage(temp);
-        petPartEqms[2].setAtk(3);
-        petPartEqms[2].setDef(3);
-        petPartEqms[2].setName("Foot");
-        temp = BitmapFactory.decodeResource(getResources(), R.drawable.wing1);
-        petPartEqms[3] = new Equipment();
-        petPartEqms[3].setLargeImage(temp);
-        petPartEqms[3].setImage(temp);
-        petPartEqms[3].setAtk(4);
-        petPartEqms[3].setDef(4);
-        petPartEqms[3].setName("Wing");
+        selectingParts = new ArrayList<>();
+        Bitmap temp2 = BitmapFactory.decodeResource(getResources(), R.drawable.head1);
+        Equipment temp1 = new Equipment();
+        temp1.setLargeImage(temp2);
+        temp1.setImage(temp2);
+        temp1.setAtk(1);
+        temp1.setDef(1);
+        temp1.setName("Head");
+        selectingParts.add(temp1);
+        temp2 = BitmapFactory.decodeResource(getResources(), R.drawable.body1);
+        temp1 = new Equipment();
+        temp1.setLargeImage(temp2);
+        temp1.setImage(temp2);
+        temp1.setAtk(2);
+        temp1.setDef(2);
+        temp1.setName("Body");
+        selectingParts.add(temp1);
+        temp2 = BitmapFactory.decodeResource(getResources(), R.drawable.foot1);
+        temp1 = new Equipment();
+        temp1.setLargeImage(temp2);
+        temp1.setImage(temp2);
+        temp1.setAtk(3);
+        temp1.setDef(3);
+        temp1.setName("Foot");
+        selectingParts.add(temp1);
+        temp2 = BitmapFactory.decodeResource(getResources(), R.drawable.wing1);
+        temp1 = new Equipment();
+        temp1.setLargeImage(temp2);
+        temp1.setImage(temp2);
+        temp1.setAtk(4);
+        temp1.setDef(4);
+        temp1.setName("Wing");
+        selectingParts.add(temp1);
         // ...
 
-        listV_selectingParts.setAdapter(new IconTextAdapter(getApplicationContext(), R.layout.icon_text_row, R.id.textViewRow, R.id.imageViewRow, petPartEqms));
-        listV_selectingParts.setOnItemClickListener(this);
+        if (selectingParts.size() <= 0) {
+            Toast.makeText(getApplicationContext(), "You have nothing!", Toast.LENGTH_LONG).show();
+        } else {
+            listV_selectingParts.setAdapter(new IconTextAdapter(getApplicationContext(), R.layout.icon_text_row, R.id.textViewRow, R.id.imageViewRow, selectingParts));
+            listV_selectingParts.setOnItemClickListener(this);
 
-        builder.setView(view)
-                .setTitle("Select equipment:")
-                .setPositiveButton("Choose", this)
-                .setNegativeButton("Cancel", this)
-                .show();
-        this.selectedPartId = selectedPartId;
+            builder.setView(view)
+                    .setTitle("Select equipment:")
+                    .setPositiveButton("Choose", this)
+                    .setNegativeButton("Cancel", this)
+                    .show();
+            this.selectedPartId = selectedPartId;
+        }
     }
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        if (which == DialogInterface.BUTTON_POSITIVE) {
-            if (selectedPart != null) {
-                switch (selectedPartId) {
-                    case PetActivity.HEAD_EQM:
-                        imgB_selectingParts.get(R.id.headSelect).setImageBitmap(selectedPart.getImage());
-                        imgV_PetParts.get(R.id.head_pet).setImageBitmap(selectedPart.getLargeImage());
-                        break;
-                    case PetActivity.BODY_EQM:
-                        imgB_selectingParts.get(R.id.bodySelect).setImageBitmap(selectedPart.getImage());
-                        imgV_PetParts.get(R.id.body_pet).setImageBitmap(selectedPart.getLargeImage());
-                        break;
-                    case PetActivity.FOOT_EQM:
-                        imgB_selectingParts.get(R.id.footSelect).setImageBitmap(selectedPart.getImage());
-                        imgV_PetParts.get(R.id.foot_pet).setImageBitmap(selectedPart.getLargeImage());
-                        break;
-                    case PetActivity.WING_EQM:
-                        imgB_selectingParts.get(R.id.wingSelect).setImageBitmap(selectedPart.getImage());
-                        imgV_PetParts.get(R.id.wing_pet).setImageBitmap(selectedPart.getLargeImage());
-                        break;
-                }
+        if (which == DialogInterface.BUTTON_POSITIVE && selectedPart != null) {
+            selectingParts.remove(selectedPart);
 
-                if (selectedPartId != PetActivity.NO_EQM) {
-                    petParts.put(selectedPartId, selectedPart);
-                }
-
-                setPetInfo();
+            if (selectedPartId != PetActivity.NO_EQM) {
+                selectingParts.add(petParts.get(selectedPartId));
+                petParts.put(selectedPartId, selectedPart);
             }
 
-            listV_selectingParts = null;
-            selectedPartId = PetActivity.NO_EQM;
-            selectedPart = null;
+            switch (selectedPartId) {
+                case PetActivity.HEAD_EQM:
+                    imgB_selectingParts.get(R.id.headSelect).setImageBitmap(selectedPart.getImage());
+                    imgV_PetParts.get(R.id.head_pet).setImageBitmap(selectedPart.getLargeImage());
+                    // TODO: setAllOwnedHead
+                    break;
+                case PetActivity.BODY_EQM:
+                    imgB_selectingParts.get(R.id.bodySelect).setImageBitmap(selectedPart.getImage());
+                    imgV_PetParts.get(R.id.body_pet).setImageBitmap(selectedPart.getLargeImage());
+                    // TODO: setAllOwnedHead
+                    break;
+                case PetActivity.FOOT_EQM:
+                    imgB_selectingParts.get(R.id.footSelect).setImageBitmap(selectedPart.getImage());
+                    imgV_PetParts.get(R.id.foot_pet).setImageBitmap(selectedPart.getLargeImage());
+                    // TODO: setAllOwnedHead
+                    break;
+                case PetActivity.WING_EQM:
+                    imgB_selectingParts.get(R.id.wingSelect).setImageBitmap(selectedPart.getImage());
+                    imgV_PetParts.get(R.id.wing_pet).setImageBitmap(selectedPart.getLargeImage());
+                    // TODO: setAllOwnedHead
+                    break;
+            }
+
+            setPetInfo();
         }
+
+        listV_selectingParts = null;
+        selectedPartId = PetActivity.NO_EQM;
+        selectedPart = null;
+        selectingParts = null;
     }
 
     @Override
