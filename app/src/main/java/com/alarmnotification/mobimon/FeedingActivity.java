@@ -117,7 +117,7 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
         selectedFood = (Food)foodGrid.getItemAtPosition(position);
         builder.setTitle(selectedFood.getName())
                 .setIcon(new BitmapDrawable(getResources(), selectedFood.getImage()))
-                .setMessage(selectedFood.getDescription())
+                .setMessage("Hồi máu: " + selectedFood.getHp() + "\r\nMô tả: " + selectedFood.getDescription())
                 .setPositiveButton("Cho ăn", this)
                 .setNegativeButton("Hủy", this)
                 .show();
@@ -144,6 +144,7 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
                 SharedPreferences data = getSharedPreferences(GlobalContants.USER_PREF, MODE_PRIVATE);
                 data.edit()
                         .putLong(GlobalContants.START_TIME, System.currentTimeMillis())
+                        .putInt(GlobalContants.MONEY, 200)
                         .commit();
 
                 try {

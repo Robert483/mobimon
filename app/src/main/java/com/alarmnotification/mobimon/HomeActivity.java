@@ -169,6 +169,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences data = getSharedPreferences(GlobalContants.USER_PREF, MODE_PRIVATE);
         data.edit()
                 .putLong(GlobalContants.START_TIME, System.currentTimeMillis())
+                .putInt(GlobalContants.MONEY, 200)
                 .commit();
 
         try {

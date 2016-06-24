@@ -26,7 +26,7 @@ public class HungerReceiver extends WakefulBroadcastReceiver {
                 data.edit().putInt(GlobalContants.HEALTH_STATE, GlobalContants.HALF_HEALTH).commit();
                 break;
             case GlobalContants.HALF_HEALTH:
-                sendNotification(context, "Thú cưng đang RẤT đói!", "Sức khỏe của thú cưng đã dưới 50%, hãy cứu thú cưng của bạn bằng cách cho nó ăn, NGAY BÂY GIỜ!!");
+                sendNotification(context, "Thú cưng đang RẤT đói!", "Sức khỏe của thú cưng đã dưới 20%, hãy cứu thú cưng của bạn bằng cách cho nó ăn, NGAY BÂY GIỜ!!");
                 setAlarm(context, 20 * GlobalContants.HP_DROP_INTERVAL);
                 data.edit().putInt(GlobalContants.HEALTH_STATE, GlobalContants.NO_HEALTH).commit();
                 break;
