@@ -74,7 +74,7 @@ public class BagActivity extends AppCompatActivity
     }
 
     private void initData() {
-        coin = getSharedPreferences(GlobalContants.USER_PREF, Context.MODE_PRIVATE).getInt(GlobalContants.MONEY, 200);
+        coin = getSharedPreferences(GlobalContants.USER_PREF, Context.MODE_PRIVATE).getInt(GlobalContants.MONEY, 1000);
     }
 
     @Override

@@ -54,7 +54,7 @@ public class SplashArtActivity extends AppCompatActivity {
                             .putLong(GlobalContants.LAST_ACTIVE, cur)
                             .putLong(GlobalContants.START_TIME, cur)
                             .putInt(GlobalContants.CUR_HP, 100)
-                            .putInt(GlobalContants.MONEY, 200)
+                            .putInt(GlobalContants.MONEY, 1000)
                             .commit();
 
                     try {

@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             this.petParts.put(petPartIds[i], (ImageView)this.findViewById(petPartIds[i]));
         }
 
-        setImageViewSet();
+        //setImageViewSet();
 
         hpTick = new Handler();
         hpDrop = new Runnable() {
@@ -149,6 +149,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        setImageViewSet();
         calculateFromLastTime();
         AlarmManager alarmMgr = (AlarmManager)getApplicationContext().getSystemService(ALARM_SERVICE);
         if (alarmMgr!= null) {

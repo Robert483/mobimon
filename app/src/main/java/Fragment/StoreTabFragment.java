@@ -1,5 +1,6 @@
 package Fragment;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -191,6 +192,15 @@ public class StoreTabFragment  extends Fragment
                 break;
 
             case R.id.btnSale:
+                int coin = getContext().getSharedPreferences(GlobalContants.USER_PREF, Context.MODE_PRIVATE).getInt(GlobalContants.MONEY, 1000);
+                if(coin < currItemSelected.getBuyPrice()){
+                    deTailItem.setVisibility(View.GONE);
+                    deTailItem.startAnimation(animFadeout);
+                    Toast.makeText(getContext(), "Không đủ tiền để mua", Toast.LENGTH_LONG).show();
+                    break;
+                }
+
+
                 imageLoader.loadImage(currItemSelected.getLinkimage(), new SimpleImageLoadingListener() {
                     @Override
                     public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {

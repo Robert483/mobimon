@@ -7,7 +7,8 @@ public class    GlobalContants {
 
     private GlobalContants() {}
 
-    public static final long HP_DROP_INTERVAL = 30 * 60 * 1000;
+    //public static final long HP_DROP_INTERVAL = 30 * 60 * 1000;
+    public static final long HP_DROP_INTERVAL = 2 * 1000;
     // User data preferences
     public static final String USER_PREF = "User preferences";
     // User data preferences keys
