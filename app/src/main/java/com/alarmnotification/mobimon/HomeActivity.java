@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +21,8 @@ import java.util.HashMap;
 
 import Object.GlobalContants;
 import Object.Equipment;
+import Object.DBHelper;
+import Object.ShareScreenshot;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener, DialogInterface.OnClickListener {
     private ImageButton[] navs;
@@ -40,7 +41,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         alarmState = GlobalContants.SET_ALARM_ENABLED;
 
-        int[] navIds = new int[] { R.id.petNav, R.id.bagNav, R.id.feedingNav, R.id.fightNav, R.id.facebookNav };
+        int[] navIds = new int[] { R.id.petNav, R.id.bagNav, R.id.feedingNav, R.id.fightNav, R.id.shareNav};
         this.navs = new ImageButton[navIds.length];
         for (int i = 0, len = navIds.length; i < len; i++) {
             this.navs[i] = (ImageButton)this.findViewById(navIds[i]);
@@ -97,9 +98,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private void resetGame() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Sorry!")
-                .setMessage("Your pet died due to starvation. Your game has been reset, all your item has been gone. You are now raising a new pet!")
-                .setPositiveButton("I understood", this)
+        builder.setTitle("Xin lỗi!")
+                .setMessage("Thú cưng của bạn đã chết đói. Bạn sẽ quay trở về khởi điểm, tất cả vật phẩm đã mất. Bạn sẽ nuôi một thú cưng mới, đừng để thú của bạn chết đói lần nữa!")
+                .setPositiveButton("Tôi đã hiểu", this)
                 .setCancelable(false);
 
         AlertDialog dialog = builder.create();
@@ -108,23 +109,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setImageViewSet() {
-        // TODO
+        Context context = getApplicationContext();
         int[] petPartIds = getPetPartIds();
+        DBHelper dbHelper = new DBHelper(context);
 
-        // ...
-        Equipment[] temp = new Equipment[4];
-        temp[0] = new Equipment();
-        temp[0].setLargeImage(BitmapFactory.decodeResource(getResources(), R.drawable.head1));
-        temp[1] = new Equipment();
-        temp[1].setLargeImage(BitmapFactory.decodeResource(getResources(), R.drawable.body1));
-        temp[2] = new Equipment();
-        temp[2].setLargeImage(BitmapFactory.decodeResource(getResources(), R.drawable.foot1));
-        temp[3] = new Equipment();
-        temp[3].setLargeImage(BitmapFactory.decodeResource(getResources(), R.drawable.wing1));
-        // ...
+        Equipment[] temp = new Equipment[] { dbHelper.getCurrentHead(), dbHelper.getCurrentBody(), dbHelper.getCurrentFoot(), dbHelper.getCurrentWing() };
 
         for (int i = 0, len = petPartIds.length; i < len; i++) {
-            petParts.get(petPartIds[i]).setImageBitmap(temp[i].getLargeImage());
+            temp[i].addLargeImageToImageView(petParts.get(petPartIds[i]), context);
         }
     }
 
@@ -142,7 +134,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.fightNav:
                 break;
-            case R.id.facebookNav:
+            case R.id.shareNav:
+                new ShareScreenshot(this, R.id.home_wrapper).shareImage();
                 break;
         }
     }
@@ -177,7 +170,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 .putLong(GlobalContants.START_TIME, System.currentTimeMillis())
                 .commit();
 
-        // TODO: setDefaultSet()
+        try {
+            new DBHelper(getApplicationContext()).copyDataBase();
+        } catch (Exception ex) {
+            throw new RuntimeException();
+        }
 
         curHp = 100;
         hpBar.setProgress(curHp);

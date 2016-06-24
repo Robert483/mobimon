@@ -11,33 +11,38 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.alarmnotification.mobimon.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Adapter.BagGridViewAdapter;
+import Object.*;
+
 
 /**
  * Created by SonPham on 6/5/2016.
  */
 public class BagTabFragment extends Fragment
-    implements GridView.OnItemClickListener
-    , Button.OnClickListener
-    , Animation.AnimationListener {
+        implements GridView.OnItemClickListener
+        , Button.OnClickListener
+        , Animation.AnimationListener{
     GridView gridView;
-    ArrayList prgmName;
 
     View deTailItem;
-    TextView txtNameCurrItem;
+    TextView txtNameCurrItem, txtDetailCurrItem;
     Button btnSale, btnCancel;
 
     Animation animFadein,animFadeout;
+    BagGridViewAdapter adapter;
+    ArrayList<Item> arrData;
+    Item currItem;
 
-    public static String [] prgmNameList={"Áo giáp vàng","Áo giáp bạc","Nón vàng","Nón bạc","Kiếm vàng","Kiếm bạc","Nhẫn bạc"};
-    public static int [] prgmImages={R.drawable.canada,R.drawable.china,R.drawable.russia
-            ,R.drawable.iran,R.drawable.italy,R.drawable.japan,R.drawable.mexico};
+    DBHelper dbHelper;
+
 
     public static BagTabFragment newInstance() {
         //Bundle args = new Bundle();
@@ -55,20 +60,32 @@ public class BagTabFragment extends Fragment
 
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.bag_tab, container, false);
 
+        initData();
+
+        initLayout(view);
+
+        return view;
+    }
+
+    private void initLayout(View view) {
         //Returning the layout file after inflating
         //Change R.layout.tab1 in you classes
-        View view = inflater.inflate(R.layout.bag_tab, container, false);
         gridView=(GridView) view.findViewById(R.id.gridView);
-        gridView.setAdapter(new BagGridViewAdapter(view.getContext(), prgmNameList, prgmImages));
+
+        adapter = new BagGridViewAdapter(view.getContext(), arrData);
+        gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(this);
 
         deTailItem = view.findViewById(R.id.viewDetailItem);
         deTailItem.setVisibility(View.GONE);
 
         txtNameCurrItem = (TextView) deTailItem.findViewById(R.id.txtName);
+        txtDetailCurrItem = (TextView) deTailItem.findViewById(R.id.txtDetail);
         btnSale = (Button) deTailItem.findViewById(R.id.btnSale);
         btnCancel = (Button) deTailItem.findViewById(R.id.btnCancel);
         btnCancel.setOnClickListener(this);
@@ -80,15 +97,31 @@ public class BagTabFragment extends Fragment
         animFadeout.setAnimationListener(this);
 
 
-        return view;
+    }
+
+    private void initData() {
+        arrData = new ArrayList<Item>();
+        if(dbHelper==null) {
+            dbHelper = new DBHelper(getContext());
+            try {
+                dbHelper.createDataBase();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        arrData.addAll(dbHelper.getAllOwnedFood());
+        arrData.addAll(dbHelper.getAllOwnedEquipment());
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        txtNameCurrItem.setText(prgmNameList[position]);
-        // start the animation
+        currItem = arrData.get(position);
+        txtNameCurrItem.setText(currItem.getName());
+        txtDetailCurrItem.setText(currItem.getDetail());
 
-        deTailItem.startAnimation(animFadein);;
+        deTailItem.setVisibility(View.VISIBLE);
+        deTailItem.startAnimation(animFadein);
+
 
 
     }
@@ -103,7 +136,12 @@ public class BagTabFragment extends Fragment
                 break;
 
             case R.id.btnSale:
-
+                dbHelper.deleteItem(currItem);
+                arrData.remove(currItem);
+                adapter.notifyDataSetChanged();
+                deTailItem.setVisibility(View.GONE);
+                deTailItem.startAnimation(animFadeout);
+                Toast.makeText(getContext(), "Bán thành công", Toast.LENGTH_LONG).show();
                 break;
 
 
@@ -130,4 +168,16 @@ public class BagTabFragment extends Fragment
     public void onAnimationRepeat(Animation animation) {
 
     }
+
+    public void updateGridView() {
+
+        if (dbHelper==null) {
+            return;
+        }
+        arrData.clear();
+        arrData.addAll(dbHelper.getAllOwnedFood());
+        arrData.addAll(dbHelper.getAllOwnedEquipment());
+        adapter.notifyDataSetChanged();
+    }
+
 }

@@ -7,13 +7,14 @@ public class GlobalContants {
 
     private GlobalContants() {}
 
-    public static final long HP_DROP_INTERVAL = 2000;//300000;
+    public static final long HP_DROP_INTERVAL = 30 * 60 * 1000;
 
     // User data preferences
     public static final String USER_PREF = "User preferences";
     // User data preferences keys
     public static final String START_TIME = "Start time";
     public static final String CUR_HP = "Current hp";
+    public static final String MONEY = "Money";
     public static final String LAST_ACTIVE = "Last active time";
     public static final String HEALTH_STATE = "Health state";
 

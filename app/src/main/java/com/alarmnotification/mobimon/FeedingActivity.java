@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import Adapter.IconTextAdapter;
 import Object.GlobalContants;
 import Object.Food;
+import Object.DBHelper;
 
 /**
  * Created by Thai Son on 04/06/2016.
@@ -52,34 +53,7 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
         alarmState = GlobalContants.SET_ALARM_ENABLED;
         selectedDialog = FeedingActivity.NO_DIALOG;
         selectedFood = null;
-        foods = new ArrayList<>();
-
-        // ...
-        Food temp = new Food();
-        temp.setName("Head");
-        temp.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.head1));
-        temp.setHp(5);
-        temp.setDescription("Head");
-        foods.add(temp);
-        temp = new Food();
-        temp.setName("Body");
-        temp.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.body1));
-        temp.setHp(10);
-        temp.setDescription("Body");
-        foods.add(temp);
-        temp = new Food();
-        temp.setName("Foot");
-        temp.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.foot1));
-        temp.setHp(15);
-        temp.setDescription("Foot");
-        foods.add(temp);
-        temp = new Food();
-        temp.setName("Wing");
-        temp.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.wing1));
-        temp.setHp(20);
-        temp.setDescription("Wing");
-        foods.add(temp);
-        // ...
+        foods = new DBHelper(getApplicationContext()).getAllOwnedFood();
 
         foodGrid = (GridView)findViewById(R.id.foodGrid);
         foodGrid.setAdapter(new IconTextAdapter(getApplicationContext(), R.layout.gridview_row, R.id.textView_TS, R.id.imageView_TS, foods));
@@ -109,9 +83,9 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
         selectedDialog = FeedingActivity.RESET_DIALOG;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Sorry!")
-                .setMessage("Your pet died due to starvation. Your game has been reset, all your item has been gone. You are now raising a new pet!")
-                .setPositiveButton("I understood", this)
+        builder.setTitle("Xin lỗi!")
+                .setMessage("Thú cưng của bạn đã chết đói. Bạn sẽ quay trở về khởi điểm, tất cả vật phẩm đã mất. Bạn sẽ nuôi một thú cưng mới, đừng để thú của bạn chết đói lần nữa!")
+                .setPositiveButton("Tôi đã hiểu", this)
                 .setCancelable(false);
 
         AlertDialog dialog = builder.create();
@@ -144,8 +118,8 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
         builder.setTitle(selectedFood.getName())
                 .setIcon(new BitmapDrawable(getResources(), selectedFood.getImage()))
                 .setMessage(selectedFood.getDescription())
-                .setPositiveButton("Feed", this)
-                .setNegativeButton("Cancel", this)
+                .setPositiveButton("Cho ăn", this)
+                .setNegativeButton("Hủy", this)
                 .show();
     }
 
@@ -160,6 +134,7 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
                     }
                     hpBar.setProgress(curHp);
                     foods.remove(selectedFood);
+                    new DBHelper(getApplicationContext()).deleteItem(selectedFood);
                     foodGrid.invalidateViews();
                 }
 
@@ -171,7 +146,11 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
                         .putLong(GlobalContants.START_TIME, System.currentTimeMillis())
                         .commit();
 
-                // TODO: setDefaultSet()
+                try {
+                    new DBHelper(getApplicationContext()).copyDataBase();
+                } catch (Exception ex) {
+                    throw new RuntimeException();
+                }
 
                 foods.clear();
                 foodGrid.invalidateViews();
@@ -203,7 +182,6 @@ public class FeedingActivity extends AppCompatActivity implements OnItemClickLis
 
     private void setAlarm() {
         if (alarmState == GlobalContants.SET_ALARM_DISABLED) {
-            // TODO: setAllOwnedFood
             hpTick.removeCallbacks(hpDrop);
 
             long cur = System.currentTimeMillis();

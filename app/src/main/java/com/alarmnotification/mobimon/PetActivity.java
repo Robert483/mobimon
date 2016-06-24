@@ -1,5 +1,6 @@
 package com.alarmnotification.mobimon;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import Adapter.IconTextAdapter;
 import Object.Equipment;
+import Object.DBHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,37 +49,12 @@ public class PetActivity extends AppCompatActivity implements View.OnClickListen
         this.selectedPart = null;
         this.petInfo = (TextView)this.findViewById(R.id.petInfo);
 
+        Context context = getApplicationContext();
+        DBHelper dbHelper = new DBHelper(context);
         int[] selectingPartIds = new int[] { R.id.headSelect, R.id.bodySelect, R.id.footSelect, R.id.wingSelect };
         int[] imgV_PetPartIds = new int[] { R.id.head_pet, R.id.body_pet, R.id.foot_pet, R.id.wing_pet };
         int[] petPartIds = this.getPetPartIds();
-
-        // ...
-        Equipment[] petPartEqms = new Equipment[4];
-        Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.head1);
-        petPartEqms[0] = new Equipment();
-        petPartEqms[0].setLargeImage(temp);
-        petPartEqms[0].setImage(temp);
-        petPartEqms[0].setAtk(1);
-        petPartEqms[0].setDef(1);
-        temp = BitmapFactory.decodeResource(getResources(), R.drawable.body1);
-        petPartEqms[1] = new Equipment();
-        petPartEqms[1].setLargeImage(temp);
-        petPartEqms[1].setImage(temp);
-        petPartEqms[1].setAtk(2);
-        petPartEqms[1].setDef(2);
-        temp = BitmapFactory.decodeResource(getResources(), R.drawable.foot1);
-        petPartEqms[2] = new Equipment();
-        petPartEqms[2].setLargeImage(temp);
-        petPartEqms[2].setImage(temp);
-        petPartEqms[2].setAtk(3);
-        petPartEqms[2].setDef(3);
-        temp = BitmapFactory.decodeResource(getResources(), R.drawable.wing1);
-        petPartEqms[3] = new Equipment();
-        petPartEqms[3].setLargeImage(temp);
-        petPartEqms[3].setImage(temp);
-        petPartEqms[3].setAtk(4);
-        petPartEqms[3].setDef(4);
-        // ...
+        Equipment[] petPartEqms = new Equipment[] { dbHelper.getCurrentHead(), dbHelper.getCurrentBody(), dbHelper.getCurrentFoot(), dbHelper.getCurrentWing() };
 
         this.imgB_selectingParts = new HashMap<>();
         this.imgV_PetParts = new HashMap<>();
@@ -88,9 +65,9 @@ public class PetActivity extends AppCompatActivity implements View.OnClickListen
             this.imgB_selectingParts.put(selectingPartIds[i], tempB);
             this.imgV_PetParts.put(imgV_PetPartIds[i], tempV);
             this.petParts.put(petPartIds[i], petPartEqms[i]);
-            tempB.setImageBitmap(petPartEqms[i].getImage());
+            petPartEqms[i].addImageToImageView(tempB, context);
             tempB.setOnClickListener(this);
-            tempV.setImageBitmap(petPartEqms[i].getLargeImage());
+            petPartEqms[i].addLargeImageToImageView(tempV, context);
         }
 
         setPetInfo();
@@ -110,7 +87,7 @@ public class PetActivity extends AppCompatActivity implements View.OnClickListen
             def += temp.getDef();
         }
 
-        petInfo.setText("Atk: " + atk + "\r\nDef: " + def);
+        petInfo.setText("Sức tấn công: " + atk + "\r\nSức phòng thủ: " + def);
     }
 
     @Override
@@ -132,59 +109,37 @@ public class PetActivity extends AppCompatActivity implements View.OnClickListen
     }
 
     private void openSelectEqmDialog(int selectedPartId) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.listview_holder, null);
-
-        listV_selectingParts = (ListView)view.findViewById(R.id.listViewHolder);
-        listV_selectingParts.setSelector(android.R.color.darker_gray);
-
-        // ...
-        selectingParts = new ArrayList<>();
-        Bitmap temp2 = BitmapFactory.decodeResource(getResources(), R.drawable.head1);
-        Equipment temp1 = new Equipment();
-        temp1.setLargeImage(temp2);
-        temp1.setImage(temp2);
-        temp1.setAtk(1);
-        temp1.setDef(1);
-        temp1.setName("Head");
-        selectingParts.add(temp1);
-        temp2 = BitmapFactory.decodeResource(getResources(), R.drawable.body1);
-        temp1 = new Equipment();
-        temp1.setLargeImage(temp2);
-        temp1.setImage(temp2);
-        temp1.setAtk(2);
-        temp1.setDef(2);
-        temp1.setName("Body");
-        selectingParts.add(temp1);
-        temp2 = BitmapFactory.decodeResource(getResources(), R.drawable.foot1);
-        temp1 = new Equipment();
-        temp1.setLargeImage(temp2);
-        temp1.setImage(temp2);
-        temp1.setAtk(3);
-        temp1.setDef(3);
-        temp1.setName("Foot");
-        selectingParts.add(temp1);
-        temp2 = BitmapFactory.decodeResource(getResources(), R.drawable.wing1);
-        temp1 = new Equipment();
-        temp1.setLargeImage(temp2);
-        temp1.setImage(temp2);
-        temp1.setAtk(4);
-        temp1.setDef(4);
-        temp1.setName("Wing");
-        selectingParts.add(temp1);
-        // ...
+        switch (selectedPartId) {
+            case PetActivity.HEAD_EQM:
+                selectingParts = new DBHelper(getApplicationContext()).getAllOwnedHead();
+                break;
+            case PetActivity.BODY_EQM:
+                selectingParts = new DBHelper(getApplicationContext()).getAllOwnedBody();
+                break;
+            case PetActivity.FOOT_EQM:
+                selectingParts = new DBHelper(getApplicationContext()).getAllOwnedFoot();
+                break;
+            case PetActivity.WING_EQM:
+                selectingParts = new DBHelper(getApplicationContext()).getAllOwnedWing();
+                break;
+        }
 
         if (selectingParts.size() <= 0) {
-            Toast.makeText(getApplicationContext(), "You have nothing!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Bạn không có trang bị nào!", Toast.LENGTH_LONG).show();
         } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            LayoutInflater inflater = getLayoutInflater();
+            View view = inflater.inflate(R.layout.listview_holder, null);
+
+            listV_selectingParts = (ListView)view.findViewById(R.id.listViewHolder);
+            listV_selectingParts.setSelector(android.R.color.darker_gray);
             listV_selectingParts.setAdapter(new IconTextAdapter(getApplicationContext(), R.layout.icon_text_row, R.id.textViewRow, R.id.imageViewRow, selectingParts));
             listV_selectingParts.setOnItemClickListener(this);
 
             builder.setView(view)
-                    .setTitle("Select equipment:")
-                    .setPositiveButton("Choose", this)
-                    .setNegativeButton("Cancel", this)
+                    .setTitle("Lựa chọn trang bị:")
+                    .setPositiveButton("Chọn", this)
+                    .setNegativeButton("Hủy", this)
                     .show();
             this.selectedPartId = selectedPartId;
         }
@@ -193,33 +148,39 @@ public class PetActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(DialogInterface dialog, int which) {
         if (which == DialogInterface.BUTTON_POSITIVE && selectedPart != null) {
+            Context context = getApplicationContext();
+            DBHelper dbHelper = new DBHelper(context);
+
             selectingParts.remove(selectedPart);
+            dbHelper.deleteItem(selectedPart);
 
             if (selectedPartId != PetActivity.NO_EQM) {
-                selectingParts.add(petParts.get(selectedPartId));
+                Equipment eqm = petParts.get(selectedPartId);
+                selectingParts.add(eqm);
+                dbHelper.saveItemToBag(eqm);
                 petParts.put(selectedPartId, selectedPart);
             }
 
             switch (selectedPartId) {
                 case PetActivity.HEAD_EQM:
-                    imgB_selectingParts.get(R.id.headSelect).setImageBitmap(selectedPart.getImage());
-                    imgV_PetParts.get(R.id.head_pet).setImageBitmap(selectedPart.getLargeImage());
-                    // TODO: setAllOwnedHead
+                    selectedPart.addImageToImageView(imgB_selectingParts.get(R.id.headSelect), context);
+                    selectedPart.addLargeImageToImageView(imgV_PetParts.get(R.id.head_pet), context);
+                    dbHelper.saveCurrentHead(selectedPart);
                     break;
                 case PetActivity.BODY_EQM:
-                    imgB_selectingParts.get(R.id.bodySelect).setImageBitmap(selectedPart.getImage());
-                    imgV_PetParts.get(R.id.body_pet).setImageBitmap(selectedPart.getLargeImage());
-                    // TODO: setAllOwnedHead
+                    selectedPart.addImageToImageView(imgB_selectingParts.get(R.id.bodySelect), context);
+                    selectedPart.addLargeImageToImageView(imgV_PetParts.get(R.id.body_pet), context);
+                    dbHelper.saveCurrentBody(selectedPart);
                     break;
                 case PetActivity.FOOT_EQM:
-                    imgB_selectingParts.get(R.id.footSelect).setImageBitmap(selectedPart.getImage());
-                    imgV_PetParts.get(R.id.foot_pet).setImageBitmap(selectedPart.getLargeImage());
-                    // TODO: setAllOwnedHead
+                    selectedPart.addImageToImageView(imgB_selectingParts.get(R.id.footSelect), context);
+                    selectedPart.addLargeImageToImageView(imgV_PetParts.get(R.id.foot_pet), context);
+                    dbHelper.saveCurrentFoot(selectedPart);
                     break;
                 case PetActivity.WING_EQM:
-                    imgB_selectingParts.get(R.id.wingSelect).setImageBitmap(selectedPart.getImage());
-                    imgV_PetParts.get(R.id.wing_pet).setImageBitmap(selectedPart.getLargeImage());
-                    // TODO: setAllOwnedHead
+                    selectedPart.addImageToImageView(imgB_selectingParts.get(R.id.wingSelect), context);
+                    selectedPart.addLargeImageToImageView(imgV_PetParts.get(R.id.wing_pet), context);
+                    dbHelper.saveCurrentWing(selectedPart);
                     break;
             }
 
@@ -235,11 +196,5 @@ public class PetActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         selectedPart = (Equipment)listV_selectingParts.getItemAtPosition(position);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // TODO: setCurretSet
     }
 }

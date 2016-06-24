@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "670285711607",
+    "firebase_url": "https://dack-android-mobimon.firebaseio.com",
+    "project_id": "dack-android-mobimon",
+    "storage_bucket": "dack-android-mobimon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670285711607:android:5920de3503a2d18c",
+        "android_client_info": {
+          "package_name": "com.google.firebase.quickstart.fcm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670285711607-3johehmjimh2p3h3ju0p52d1dkefbbvc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.firebase.quickstart.fcm",
+            "certificate_hash": "DB2A12F81C21217FE172E1B55C287749A5A34CBA"
+          }
+        },
+        {
+          "client_id": "670285711607-ue250l7k8gm3iin7a0b9ecj237ogdare.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrq03zk7fBCCN6h59bxJ0jR5Q17hWiy2Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670285711607-ue250l7k8gm3iin7a0b9ecj237ogdare.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670285711607:android:dea35054b1a257c9",
+        "android_client_info": {
+          "package_name": "com.alarmnotification.mobimon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670285711607-uv9ac29autlcl0npgonffo2njs4gbedb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alarmnotification.mobimon",
+            "certificate_hash": "DB2A12F81C21217FE172E1B55C287749A5A34CBA"
+          }
+        },
+        {
+          "client_id": "670285711607-ue250l7k8gm3iin7a0b9ecj237ogdare.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrq03zk7fBCCN6h59bxJ0jR5Q17hWiy2Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670285711607-ue250l7k8gm3iin7a0b9ecj237ogdare.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

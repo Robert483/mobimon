@@ -29,15 +29,16 @@ public class IconTextAdapter<T extends Item> extends ArrayAdapter<T> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        Context        context  = getContext();
+        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View           row      = inflater.inflate(this.resource, null);
-        Item           item      = this.getItem(position);
+        Item           item     = this.getItem(position);
 
         TextView textView = (TextView)row.findViewById(this.txtVRId);
         textView.setText(item.getName());
 
         ImageView imageView = (ImageView)row.findViewById(this.imgVRId);
-        imageView.setImageBitmap(item.getImage());
+        item.addImageToImageView(imageView, context);
 
         return row;
     }

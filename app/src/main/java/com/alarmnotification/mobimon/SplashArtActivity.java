@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import Object.GlobalContants;
+import Object.DBHelper;
 
 
 public class SplashArtActivity extends AppCompatActivity {
@@ -53,7 +54,14 @@ public class SplashArtActivity extends AppCompatActivity {
                             .putLong(GlobalContants.LAST_ACTIVE, cur)
                             .putLong(GlobalContants.START_TIME, cur)
                             .putInt(GlobalContants.CUR_HP, 100)
+                            .putInt(GlobalContants.MONEY, 200)
                             .commit();
+
+                    try {
+                        new DBHelper(getApplicationContext()).createDataBase();
+                    } catch (Exception ex) {
+                        throw new RuntimeException();
+                    }
                 }
 
                 Intent mainIntent = new Intent(SplashArtActivity.this.getApplicationContext(), HomeActivity.class);
