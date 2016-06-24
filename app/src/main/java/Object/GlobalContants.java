@@ -22,6 +22,7 @@ public class    GlobalContants {
 
     // Notification
     public static final int HUNGER_NOTI = 0;
+    public static final int NEW_ITEM_NOTI = 1;
 
     // HEALTH_STATE values
     public static final int FULL_HEALTH = 2;

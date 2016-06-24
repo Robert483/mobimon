@@ -30,6 +30,7 @@ import com.alarmnotification.mobimon.PetActivity;
 import com.alarmnotification.mobimon.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import Object.GlobalContants;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -61,10 +62,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      */
     private void sendNotification(String messageBody) {
         Log.d("Son", "Notification Message");
+<<<<<<< HEAD
         Intent intent = new Intent(this, BagActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
+=======
+        Intent intent = new Intent(this, PetActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, GlobalContants.SPLASH_ART_REQ_CODE, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+>>>>>>> 8b488cf2f00a4bdb8e34b520b0044401eda8dd02
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
@@ -78,6 +86,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        notificationManager.notify(GlobalContants.NEW_ITEM_NOTI, notificationBuilder.build());
     }
 }
