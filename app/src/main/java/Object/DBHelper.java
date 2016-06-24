@@ -225,7 +225,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
 
 
-        db.update("Currenset", contentValues, "type = ? ", new String[]{type});
+        db.update("Currentset", contentValues, "type = ? ", new String[]{type});
 
     }
 
@@ -353,14 +353,14 @@ public class DBHelper extends SQLiteOpenHelper{
         return getAllStoreEquipment("wing");
     }
 
-    public Food[] getAllStoreFood(){
+    public ArrayList<Food> getAllStoreFood(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery("select * from Food where form = 'store'", null);
         res.moveToFirst();
 
-        Food[] foods = new Food[res.getCount()];
-        for(int i=0;i< foods.length;i++) {
-            foods[i]= CurrsorToFood(res);
+        ArrayList<Food> foods = new ArrayList<>();
+        for(int i=0;i< res.getCount();i++) {
+            foods.add(CurrsorToFood(res));
             res.moveToNext();
         }
         return foods;

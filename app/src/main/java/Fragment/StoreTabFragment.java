@@ -26,6 +26,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import Document.Config;
 import Document.Utility;
+import Interface.SaleListenner;
 import Object.*;
 
 import java.io.IOException;
@@ -52,6 +53,7 @@ public class StoreTabFragment  extends Fragment
     ImageLoader imageLoader;
     Item currItemSelected;
     DBHelper dbHelper;
+
 
 
 
@@ -118,6 +120,7 @@ public class StoreTabFragment  extends Fragment
         }
 
         arrData = new ArrayList<Item>();
+        arrData.addAll(dbHelper.getAllStoreFood());
         arrData.addAll(dbHelper.getAllStoreEquipment());
 
         Firebase.setAndroidContext(getContext());
@@ -127,32 +130,32 @@ public class StoreTabFragment  extends Fragment
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                DataSnapshot currSnapshot =  snapshot.child("Food");
+                DataSnapshot currSnapshot = snapshot.child("Food");
                 for (DataSnapshot postSnapshot : currSnapshot.getChildren()) {
                     Food item = new Food(postSnapshot);
                     arrData.add(item);
                 }
-                currSnapshot =  snapshot.child("Body");
+                currSnapshot = snapshot.child("Body");
                 for (DataSnapshot postSnapshot : currSnapshot.getChildren()) {
-                    Equipment item = new Equipment(postSnapshot,"body");
+                    Equipment item = new Equipment(postSnapshot, "body");
                     //Getting the data from snapshot
                     arrData.add(item);
                 }
-                currSnapshot =  snapshot.child("Wing");
+                currSnapshot = snapshot.child("Wing");
                 for (DataSnapshot postSnapshot : currSnapshot.getChildren()) {
-                    Equipment item = new Equipment(postSnapshot,"wing");
+                    Equipment item = new Equipment(postSnapshot, "wing");
                     //Getting the data from snapshot
                     arrData.add(item);
                 }
-                currSnapshot =  snapshot.child("Foot");
+                currSnapshot = snapshot.child("Foot");
                 for (DataSnapshot postSnapshot : currSnapshot.getChildren()) {
-                    Equipment item = new Equipment(postSnapshot,"foot");
+                    Equipment item = new Equipment(postSnapshot, "foot");
                     //Getting the data from snapshot
                     arrData.add(item);
                 }
-                currSnapshot =  snapshot.child("Head");
+                currSnapshot = snapshot.child("Head");
                 for (DataSnapshot postSnapshot : currSnapshot.getChildren()) {
-                    Equipment item = new Equipment(postSnapshot,"head");
+                    Equipment item = new Equipment(postSnapshot, "head");
                     //Getting the data from snapshot
                     arrData.add(item);
                 }
@@ -207,6 +210,7 @@ public class StoreTabFragment  extends Fragment
                                         dbHelper.saveItemToBag(currItemSelected);
                                         deTailItem.setVisibility(View.GONE);
                                         deTailItem.startAnimation(animFadeout);
+                                        listenner.buyItemCompleted(currItemSelected.getBuyPrice());
                                         Toast.makeText(getContext(), "Mua thành công", Toast.LENGTH_LONG).show();
                                     }
                                 });
@@ -215,6 +219,7 @@ public class StoreTabFragment  extends Fragment
                                 dbHelper.saveItemToBag(currItemSelected);
                                 deTailItem.setVisibility(View.GONE);
                                 deTailItem.startAnimation(animFadeout);
+                                listenner.buyItemCompleted(currItemSelected.getBuyPrice());
                                 Toast.makeText(getContext(), "Mua thành công", Toast.LENGTH_LONG).show();
                             }
                         }
@@ -222,6 +227,7 @@ public class StoreTabFragment  extends Fragment
                             dbHelper.saveItemToBag(currItemSelected);
                             deTailItem.setVisibility(View.GONE);
                             deTailItem.startAnimation(animFadeout);
+                            listenner.buyItemCompleted(currItemSelected.getBuyPrice());
                             Toast.makeText(getContext(), "Mua thành công", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -253,5 +259,10 @@ public class StoreTabFragment  extends Fragment
     @Override
     public void onAnimationRepeat(Animation animation) {
 
+    }
+    SaleListenner listenner;
+    public void setOnSaleListener(SaleListenner listenner) {
+        if (this.listenner == null)
+            this.listenner = listenner;
     }
 }

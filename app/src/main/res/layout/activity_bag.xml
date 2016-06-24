@@ -9,6 +9,34 @@
     tools:context=".BagActivity">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Xu: 100"
+            android:id="@+id/txtCoin"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView"
+            android:padding="10dp"
+            android:layout_marginLeft="-10dp"
+            android:layout_toRightOf="@+id/txtCoin"
+            android:src="@drawable/ic_coin"/>
+    </RelativeLayout>
+
     <!-- our tablayout to display tabs  -->
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"

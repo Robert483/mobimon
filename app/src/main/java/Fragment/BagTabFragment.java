@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Adapter.BagGridViewAdapter;
+import Interface.SaleListenner;
 import Object.*;
 
 
@@ -141,6 +142,7 @@ public class BagTabFragment extends Fragment
                 adapter.notifyDataSetChanged();
                 deTailItem.setVisibility(View.GONE);
                 deTailItem.startAnimation(animFadeout);
+                listenner.sellItemCompleted(currItem.getSellPrice());
                 Toast.makeText(getContext(), "Bán thành công", Toast.LENGTH_LONG).show();
                 break;
 
@@ -178,6 +180,12 @@ public class BagTabFragment extends Fragment
         arrData.addAll(dbHelper.getAllOwnedFood());
         arrData.addAll(dbHelper.getAllOwnedEquipment());
         adapter.notifyDataSetChanged();
+    }
+
+    SaleListenner listenner;
+    public void setOnSaleListener(SaleListenner listenner) {
+        if (this.listenner == null)
+            this.listenner = listenner;
     }
 
 }

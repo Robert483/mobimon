@@ -1,5 +1,7 @@
 package com.alarmnotification.mobimon;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -7,26 +9,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import Adapter.PageAdapter;
 import Fragment.BagTabFragment;
+import Fragment.StoreTabFragment;
+import Interface.SaleListenner;
+import Object.*;
 
 public class BagActivity extends AppCompatActivity
         implements TabLayout.OnTabSelectedListener
-        {
+        , SaleListenner{
 
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private PageAdapter pageAdapter;
-
+    private int coin;
+    private TextView txtCoin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bag);
-
-
 
         initData();
 
@@ -35,7 +40,10 @@ public class BagActivity extends AppCompatActivity
     }
 
     private void initLayout() {
+        txtCoin = (TextView) findViewById(R.id.txtCoin);
+        txtCoin.setText("Xu: " + coin);
         initTabLayout();
+
     }
 
     private void initTabLayout() {
@@ -62,10 +70,11 @@ public class BagActivity extends AppCompatActivity
         viewPager.setCurrentItem(1);
         viewPager.setCurrentItem(0);
         //tabLayout.getTabAt(0).getCustomView().setBackgroundColor(Color.WHITE);
+
     }
 
     private void initData() {
-
+        coin = getSharedPreferences(GlobalContants.USER_PREF, Context.MODE_PRIVATE).getInt(GlobalContants.MONEY, 200);
     }
 
     @Override
@@ -94,8 +103,15 @@ public class BagActivity extends AppCompatActivity
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());
         if(viewPager.getCurrentItem() == 0) {
-            BagTabFragment frag1 = (BagTabFragment) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
-            frag1.updateGridView();
+            BagTabFragment bagTabFragment = (BagTabFragment) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
+            bagTabFragment.updateGridView();
+            bagTabFragment.setOnSaleListener(this);
+
+
+        }
+        else {
+            StoreTabFragment storeTabFragment = (StoreTabFragment) viewPager.getAdapter().instantiateItem(viewPager,1);
+            storeTabFragment.setOnSaleListener(this);
         }
     }
 
@@ -107,5 +123,25 @@ public class BagActivity extends AppCompatActivity
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    @Override
+    public void buyItemCompleted(int price) {
+        coin -= price;
+        txtCoin.setText("Xu: " + coin);
+        SharedPreferences sharedpreferences = getSharedPreferences(GlobalContants.USER_PREF, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putInt(GlobalContants.MONEY, coin);
+        editor.commit();
+    }
+
+    @Override
+    public void sellItemCompleted(int price) {
+        coin += price;
+        txtCoin.setText("Xu: " + coin);
+        SharedPreferences sharedpreferences = getSharedPreferences(GlobalContants.USER_PREF, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putInt(GlobalContants.MONEY, coin);
+        editor.commit();
     }
 }
