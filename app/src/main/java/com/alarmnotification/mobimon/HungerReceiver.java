@@ -45,7 +45,7 @@ public class HungerReceiver extends WakefulBroadcastReceiver {
 
     private void sendNotification(Context context, String title, String message) {
         Intent resultIntent = new Intent(context, SplashArtActivity.class);
-        resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent resultPendingIntent = PendingIntent.getActivity(context, GlobalContants.SPLASH_ART_REQ_CODE, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
